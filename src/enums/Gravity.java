@@ -1,11 +1,11 @@
 package enums;
 
 /**
- * Created by Cregnacht on 2015-02-21.
+ * Defines gravity types to specify the interaction of physics bodies with the gravitational forces.
  */
 public enum Gravity
 {
     NONE,
     STANDARD,
-    PLAYER;
+    PLAYER
 }

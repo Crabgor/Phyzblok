@@ -1,4 +1,29 @@
 package entities;
 
-public class WallEntity extends Entity {
+import enums.Gravity;
+
+import java.awt.*;
+
+public class WallEntity extends Entity
+{
+    public WallEntity(float xModel, float yModel, float width, float height)
+    {
+        this.mass = 1.0f;
+        this.colour = Color.black;
+        this.gravityType = Gravity.NONE;
+        this.positionLocked = true;
+        this.shape = new Rectangle();
+        this.xModel = xModel;
+        this.yModel = yModel;
+        this.width = width;
+        this.height = height;
+        this.rotation = 0.0f;
+
+        // TODO : FIX COEFFICIENTS
+        this.frictionCoeff = 0.0f;
+        this.restitutionCoeff = 0.0f;
+        this.gravityScale = 0.0f;
+        this.linearDamping = 0.0f;
+        this.angularDamping = 0.0f;
+    }
 }

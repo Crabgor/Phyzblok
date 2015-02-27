@@ -1,51 +1,97 @@
 package model;
 
-import entities.Entity;
+import entities.*;
 import levelGeneration.Level;
+import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Model
 {
+	// region Fields
 	private World world;
-	private float gravityMag;
-	private Vec2 gravityVect;
 	private Body mainBody;
-	private Body[] playerGravityBodies;
-	private Vec2[] goalLocation;
+	private List<Body> dynamicBodies;
+	// TODO: LIST OF DYNAMIC BODIES UNDER PLAYER GRAVITY
+	private Vec2 currentGravity;
+	// private float[] goalLocation;
+	// endregion
 
-	public World getWorld() { return world; }
-	public Body getMainBody() { return mainBody; }
-	public Body[] getPlayerGravityBodies() { return playerGravityBodies; }
+	// region Getters
+	public World getWorld()
+	{
+		return world;
+	}
 
+
+	public Body getMainBody()
+	{
+		return mainBody;
+	}
+
+
+	public List<Body> getDynamicBodies()
+	{
+		return dynamicBodies;
+	}
+	// endregion
 
 	/**
 	 *
 	 */
-	public Model() {}
-
-
-	/**
-	 * 
-	 * @param bodies
-	 */
-	private boolean buildWorld(BodyDef[] bodies)
+	public Model()
 	{
-		// TODO - implement Model.buildWorld
-		throw new UnsupportedOperationException();
+		world = null;
+		mainBody = null;
+		dynamicBodies = new ArrayList<Body>();
+		currentGravity = new Vec2(0.0f, 0.0f);
 	}
 
 
 	/**
 	 * 
 	 * @param level
+	 *
+	 * @return	the success of level creation.
 	 */
 	public boolean buildLevel(Level level)
 	{
-		// TODO - implement Model.buildLevel
-		throw new UnsupportedOperationException();
+		// Construct physics world + load physics bodies
+		World w = new WorldBuilder().buildEnvironment(level);
+
+		if (w == null || w.getBodyCount() <= 0) return false;
+
+		// Get references to all dynamic bodies for visual updates
+		Body b = w.getBodyList();
+
+		mainBody = b;
+		if (b.getNext() != null) b = b.getNext();
+		while (b.getNext() != null)
+		{
+			if (b.getType() == BodyType.DYNAMIC)
+				dynamicBodies.add(b);
+			b = b.getNext();
+		}
+
+		world = w;
+		return true;
+	}
+
+
+	/**
+	 *
+	 * @param x
+	 * @param y
+	 * @param mag
+	 */
+	public void applyPlayerGravity(int x, int y, int mag)
+	{
+		Vec2 gravity = new Vec2(x * mag, y * mag);
+		if (currentGravity == gravity) return;
+		currentGravity = gravity;
 	}
 
 
@@ -54,23 +100,48 @@ public class Model
 	 */
 	public void stepWorld()
 	{
+		mainBody.applyForceToCenter(currentGravity);
 
+		// TODO: OTHER STUFF + STEP
 	}
 
 
 	/**
 	 *
 	 */
-	private static class WorldBuilder
+	private class WorldBuilder
 	{
 		/**
 		 *
-		 * @param entities
+		 * @param level
+		 *
+		 * Post-condition: 	The main entity is the first body in the World instance.
+		 * 					All other entities added to the World instance.
 		 */
-		public static World buildEnvironment(Entity[] entities)
+		public World buildEnvironment(Level level)
 		{
-			// TODO - implement WorldBuilder.buildEnvironment
-			throw new UnsupportedOperationException();
+			World world = new World(level.getGravityVector());
+
+			Entity e = level.getMainEntity();
+			BodyDef bodyDef = constructBodyDef(e);
+			Body body = world.createBody(bodyDef);
+			FixtureDef fixtureDef = constructFixtureDef(e);
+			body.createFixture(fixtureDef);
+			body.m_mass = e.getMass();
+			body.m_invMass = 1 / e.getMass();
+
+			for (int i = 0; i < level.getEntities().length; i++)
+			{
+				e = level.getEntities()[i];
+				bodyDef = constructBodyDef(e);
+				body = world.createBody(bodyDef);
+				fixtureDef = constructFixtureDef(e);
+				body.createFixture(fixtureDef);
+				body.m_mass = e.getMass();
+				body.m_invMass = 1 / e.getMass();
+			}
+
+			return world;
 		}
 
 
@@ -78,12 +149,29 @@ public class Model
 		 *
 		 * @param entity
 		 */
-		private static BodyDef constructBody(Entity entity)
+		private BodyDef constructBodyDef(Entity entity)
 		{
+			assert entity != null;
 			BodyDef bodyDef = new BodyDef();
+			bodyDef.position.set(entity.getxModel(), entity.getyModel());
+			bodyDef.angle = entity.getRotation();
+			bodyDef.gravityScale = entity.getGravityScale();
+			bodyDef.angularDamping = entity.getAngularDamping();
+			bodyDef.linearDamping = entity.getLinearDamping();
+			// TODO: OTHERS?
 
-			// TODO - implement WorldBuilder.constructBody
-			throw new UnsupportedOperationException();
+			return bodyDef;
+		}
+
+
+		private FixtureDef constructFixtureDef(Entity entity)
+		{
+			FixtureDef fixtureDef = new FixtureDef();
+			fixtureDef.friction = entity.getFrictionCoeff();
+			fixtureDef.restitution = entity.getRestitutionCoeff();
+			// TODO: OTHERS?
+
+			return fixtureDef;
 		}
 	}
 }

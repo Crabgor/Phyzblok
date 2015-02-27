@@ -1,17 +1,41 @@
 package levelGeneration;
 
-import entities.Entity;
+import entities.*;
+import org.jbox2d.common.Vec2;
 
 public class Level
 {
-	private Entity mainEntity;
+	// region Fields
+	private MainEntity mainEntity;
 	private Entity[] entities;
 	private float[] goalLocation;
+	private Vec2 gravityVector;
+	// endregion
 
-	public Entity getMainEntity() { return mainEntity; }
-	public Entity[] getEntities() { return entities; }
-	public float[] getGoalLocation() { return goalLocation; }
+	// region Getters
+	public MainEntity getMainEntity()
+	{
+		return mainEntity;
+	}
 
+
+	public Entity[] getEntities()
+	{
+		return entities;
+	}
+
+
+	public float[] getGoalLocation()
+	{
+		return goalLocation;
+	}
+
+
+	public Vec2 getGravityVector()
+	{
+		return gravityVector;
+	}
+	// endregion
 
 	/**
 	 *
@@ -19,10 +43,11 @@ public class Level
 	 * @param entities
 	 * @param goalLocation
 	 */
-	public Level(Entity mainEntity, Entity[] entities, float[] goalLocation)
+	public Level(MainEntity mainEntity, Entity[] entities, float[] goalLocation, Vec2 gravityVector)
 	{
 		this.mainEntity = mainEntity;
 		this.entities = entities;
 		this.goalLocation = goalLocation;
+		this.gravityVector = gravityVector;
 	}
 }

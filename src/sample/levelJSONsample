@@ -1,0 +1,30 @@
+{
+  "worldInfo" :
+  {
+    "goalLocation_x" : "0.0f",
+    "goalLocation_y" : "0.0f",
+    "gravityVectorX" : "0.0f",
+    "gravityVectorY" : "0.0f"
+  }
+
+  "Entities" :
+          [
+            {
+              "mass"              : "1.0f",
+              "colour"            : "Color.BLACK",
+              "gravityType"       : "Gravity.STANDARD",
+              "positionLocked"    : "false",
+              "shape"             : "Polygon",
+              "xModel"            : "0.0f",
+              "yModel"            : "0.0f",
+              "width"             : "0.0f",
+              "height"            : "0.0f",
+              "rotation"          : "0.0f",
+              "frictionCoeff"     : "0.0f",
+              "restitutionCoeff"  : "0.0f",
+              "gravityScale"      : "0.0f",
+              "angularDamping"    : "0.0f",
+              "linearDamping"     : "0.0f"
+            }
+          ]
+}

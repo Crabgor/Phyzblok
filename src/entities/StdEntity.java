@@ -1,4 +1,30 @@
 package entities;
 
-public class StdEntity extends Entity {
+import enums.Gravity;
+
+import java.awt.*;
+
+public class StdEntity extends Entity
+{
+    public StdEntity(float mass, Color colour, float xModel, float yModel,
+                     float width, float height, float rotation,
+                     float frictionCoeff, float restitutionCoeff, float gravityScale,
+                     float linearDamping, float angularDamping)
+    {
+        this.mass = mass;
+        this.colour = colour;
+        this.gravityType = Gravity.STANDARD;
+        this.positionLocked = false;
+        this.shape = null;  // TODO : FIX SHAPE
+        this.xModel = xModel;
+        this.yModel = yModel;
+        this.width = width;
+        this.height = height;
+        this.rotation = rotation;
+        this.frictionCoeff = frictionCoeff;
+        this.restitutionCoeff = restitutionCoeff;
+        this.gravityScale = gravityScale;
+        this.linearDamping = linearDamping;
+        this.angularDamping = angularDamping;
+    }
 }
