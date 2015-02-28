@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.*;
 import enums.Gravity;
+import org.jbox2d.dynamics.Body;
 
 /**
  * An abstract representation of a physical entity used for generating
@@ -25,6 +26,7 @@ public abstract class Entity
 	protected float 	gravityScale;
 	protected float 	angularDamping;
 	protected float 	linearDamping;
+	protected Body		physicsBody;
 	// endregion
 
 	// region Getters
@@ -127,6 +129,24 @@ public abstract class Entity
 	public float getAngularDamping()
 	{
 		return angularDamping;
+	}
+
+
+	public float getBodyXPosition()	// Only view/controller need this
+	{
+		return physicsBody.getPosition().x;
+	}
+
+
+	public float getBodyYPosition() // Only view/controller need this
+	{
+		return physicsBody.getPosition().y;
+	}
+
+
+	public float angle() // Only view/controller need this
+	{
+		return physicsBody.getAngle();
 	}
 	// endregion
 

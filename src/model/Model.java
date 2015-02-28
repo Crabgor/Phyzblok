@@ -2,19 +2,23 @@ package model;
 
 import entities.*;
 import levelGeneration.Level;
-import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model
 {
+	// region Constants
+	private final float DEFAULT_DENSITY = 1.0f;
+	// endregion
+
 	// region Fields
 	private World world;
 	private Body mainBody;
+	private MainEntity mainEntity;
 	private List<Body> dynamicBodies;
+	private List<Entity> dynamicEntities;
 	// TODO: LIST OF DYNAMIC BODIES UNDER PLAYER GRAVITY
 	private Vec2 currentGravity;
 	// private float[] goalLocation;
@@ -59,6 +63,7 @@ public class Model
 	 */
 	public boolean buildLevel(Level level)
 	{
+		// TODO: GROUND BOX
 		// Construct physics world + load physics bodies
 		World w = new WorldBuilder().buildEnvironment(level);
 
@@ -98,11 +103,11 @@ public class Model
 	/**
 	 *
 	 */
-	public void stepWorld()
+	public void stepWorld(float timeStep, int velocityIt, int positionIt)
 	{
 		mainBody.applyForceToCenter(currentGravity);
-
-		// TODO: OTHER STUFF + STEP
+		world.step(timeStep, velocityIt, positionIt);
+		// TODO: OTHER STUFF
 	}
 
 
@@ -154,6 +159,7 @@ public class Model
 			assert entity != null;
 			BodyDef bodyDef = new BodyDef();
 			bodyDef.position.set(entity.getxModel(), entity.getyModel());
+			bodyDef.type = entity.isPositionLocked() ? BodyType.STATIC : BodyType.DYNAMIC;
 			bodyDef.angle = entity.getRotation();
 			bodyDef.gravityScale = entity.getGravityScale();
 			bodyDef.angularDamping = entity.getAngularDamping();
@@ -166,9 +172,11 @@ public class Model
 
 		private FixtureDef constructFixtureDef(Entity entity)
 		{
+			assert entity != null;
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.friction = entity.getFrictionCoeff();
 			fixtureDef.restitution = entity.getRestitutionCoeff();
+			fixtureDef.density = DEFAULT_DENSITY;
 			// TODO: OTHERS?
 
 			return fixtureDef;

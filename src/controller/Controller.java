@@ -10,6 +10,16 @@ import java.awt.event.KeyEvent;
  */
 public class Controller
 {
+    // region Constants
+    private final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
+    private final int   VELOCITY_ITERATIONS_PER_STEP = 1;
+    private final int   POSITION_ITERATIONS_PER_STEP = 1;
+    // endregion
+
+    // region Supporting Objects
+    // TODO: TIMER
+    // endregion
+
     // region Fields
     private Model model;
     //VIEW
@@ -42,6 +52,13 @@ public class Controller
     public Controller()
     {
 
+    }
+
+
+    public void step()
+    {
+        model.stepWorld(STEP_PERIOD, VELOCITY_ITERATIONS_PER_STEP, POSITION_ITERATIONS_PER_STEP);
+        // TODO: VIEW REDRAW + TIMER CALCULATIONS??
     }
 
 

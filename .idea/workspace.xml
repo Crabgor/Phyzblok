@@ -66,50 +66,68 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="2475">
-              <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="1905">
+              <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="n#!!doc;n#DEFAULT_DENSITY#0;n#Model#0" expanded="false" />
                 <element signature="n#!!doc;n#getWorld#0;n#Model#0" expanded="false" />
+                <element signature="method#buildEnvironment#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+                <element signature="method#constructBodyDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+                <element signature="method#constructFixtureDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FixtureDef.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/FixtureDef.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30769232" vertical-offset="135" max-vertical-offset="1110">
-              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="758" max-vertical-offset="1785">
+              <caret line="132" column="24" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="n#!!doc;n#model#0;n#Controller#0" expanded="false" />
                 <element signature="n#!!doc;n#getModel#0;n#Controller#0" expanded="false" />
-                <element signature="e#797#811#0" expanded="false" />
-                <element signature="e#1583#1597#0" expanded="false" />
-                <element signature="e#2369#2384#0" expanded="false" />
-                <element signature="e#3156#3168#0" expanded="false" />
-                <element signature="e#3937#3948#0" expanded="false" />
-                <element signature="e#4689#4700#0" expanded="false" />
-                <element signature="e#5441#5452#0" expanded="false" />
-                <element signature="e#6193#6204#0" expanded="false" />
-                <element signature="e#6945#6956#0" expanded="false" />
-                <element signature="e#7697#7708#0" expanded="false" />
-                <element signature="e#8449#8460#0" expanded="false" />
-                <element signature="e#9201#9212#0" expanded="false" />
-                <element signature="e#9953#9964#0" expanded="false" />
-                <element signature="e#10705#10716#0" expanded="false" />
+                <element signature="e#1281#1295#0" expanded="false" />
+                <element signature="e#2067#2081#0" expanded="false" />
+                <element signature="e#2853#2868#0" expanded="false" />
+                <element signature="e#3640#3652#0" expanded="false" />
+                <element signature="e#4421#4432#0" expanded="false" />
+                <element signature="e#5173#5184#0" expanded="false" />
+                <element signature="e#5925#5936#0" expanded="false" />
+                <element signature="e#6677#6688#0" expanded="false" />
+                <element signature="e#7429#7440#0" expanded="false" />
+                <element signature="e#8181#8192#0" expanded="false" />
+                <element signature="e#8933#8944#0" expanded="false" />
+                <element signature="e#9685#9696#0" expanded="false" />
+                <element signature="e#10437#10448#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/enums/GameState.java">
+      <file leaf-file-name="Body.java" pinned="false" current-in-tab="true">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/Body.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-              <folding />
+            <state vertical-scroll-proportion="0.44025156" vertical-offset="0" max-vertical-offset="16440">
+              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+              <folding>
+                <element signature="e#10249#10250#0" expanded="true" />
+                <element signature="e#10272#10273#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -165,12 +183,10 @@
       <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1725">
+              <caret line="142" column="34" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="n#!!doc;n#mass#0;n#Entity#0" expanded="false" />
-                <element signature="n#!!doc;n#getMass#0;n#Entity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -197,10 +213,10 @@
         <option value="$PROJECT_DIR$/src/controller/State.java" />
         <option value="$PROJECT_DIR$/src/controller/GameState.java" />
         <option value="$PROJECT_DIR$/src/levelGeneration/Level.java" />
-        <option value="$PROJECT_DIR$/src/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/sample/levelJSONsample" />
         <option value="$PROJECT_DIR$/src/levelGeneration/LevelParser.java" />
         <option value="$PROJECT_DIR$/src/enums/GameState.java" />
+        <option value="$PROJECT_DIR$/src/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/model/Model.java" />
         <option value="$PROJECT_DIR$/src/controller/Controller.java" />
       </list>
@@ -638,7 +654,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940476" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25579977" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -672,12 +688,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/entities/Entity.java</url>
-          <line>18</line>
+          <line>19</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/entities/Entity.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -692,7 +714,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="n#!!doc;n#DEFAULT_DENSITY#0;n#Model#0" expanded="false" />
             <element signature="n#!!doc;n#getWorld#0;n#Model#0" expanded="false" />
+            <element signature="method#buildEnvironment#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructBodyDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructFixtureDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -720,7 +746,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="315">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -730,7 +756,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="135">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -740,7 +766,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="135">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,7 +789,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="n#!!doc;n#DEFAULT_DENSITY#0;n#Model#0" expanded="false" />
             <element signature="n#!!doc;n#getWorld#0;n#Model#0" expanded="false" />
+            <element signature="method#buildEnvironment#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructBodyDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructFixtureDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -791,7 +821,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="315">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,7 +831,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="135">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -811,7 +841,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="135">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -868,7 +898,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
           <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -878,24 +908,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <caret line="15" column="29" selection-start-line="14" selection-start-column="36" selection-end-line="15" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/Body.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5807" max-vertical-offset="16410">
-          <caret line="448" column="10" selection-start-line="448" selection-start-column="5" selection-end-line="448" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19092827" vertical-offset="8039" max-vertical-offset="21870">
-          <caret line="629" column="14" selection-start-line="629" selection-start-column="14" selection-end-line="629" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,16 +918,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
           <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/Gravity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16923077" vertical-offset="0" max-vertical-offset="975">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -947,26 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="n#!!doc;n#mass#0;n#Entity#0" expanded="false" />
-            <element signature="n#!!doc;n#getMass#0;n#Entity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/levelGeneration/Level.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
@@ -987,39 +973,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Model.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/FixtureDef.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="2475">
-          <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1725">
+          <caret line="142" column="34" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.490566" vertical-offset="0" max-vertical-offset="15510">
+          <caret line="629" column="0" selection-start-line="629" selection-start-column="0" selection-end-line="629" selection-end-column="0" />
+          <folding>
+            <element signature="method#addType#0;class#World#0" expanded="false" />
+            <element signature="method#initializeRegisters#0;class#World#0" expanded="false" />
+            <element signature="method#popContact#0;class#World#0" expanded="false" />
+            <element signature="method#pushContact#0;class#World#0" expanded="false" />
+            <element signature="method#createBody#0;class#World#0" expanded="false" />
+            <element signature="method#destroyBody#0;class#World#0" expanded="false" />
+            <element signature="method#createJoint#0;class#World#0" expanded="false" />
+            <element signature="method#destroyJoint#0;class#World#0" expanded="false" />
+            <element signature="method#step#0;class#World#0" expanded="false" />
+            <element signature="method#clearForces#0;class#World#0" expanded="false" />
+            <element signature="method#drawDebugData#0;class#World#0" expanded="false" />
+            <element signature="method#queryAABB#0;class#World#0" expanded="false" />
+            <element signature="method#raycast#0;class#World#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="1905">
+          <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc;n#DEFAULT_DENSITY#0;n#Model#0" expanded="false" />
             <element signature="n#!!doc;n#getWorld#0;n#Model#0" expanded="false" />
+            <element signature="method#buildEnvironment#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructBodyDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
+            <element signature="method#constructFixtureDef#0;class#WorldBuilder#0;class#Model#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30769232" vertical-offset="135" max-vertical-offset="1110">
-          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="758" max-vertical-offset="1785">
+          <caret line="132" column="24" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="n#!!doc;n#model#0;n#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#getModel#0;n#Controller#0" expanded="false" />
-            <element signature="e#797#811#0" expanded="false" />
-            <element signature="e#1583#1597#0" expanded="false" />
-            <element signature="e#2369#2384#0" expanded="false" />
-            <element signature="e#3156#3168#0" expanded="false" />
-            <element signature="e#3937#3948#0" expanded="false" />
-            <element signature="e#4689#4700#0" expanded="false" />
-            <element signature="e#5441#5452#0" expanded="false" />
-            <element signature="e#6193#6204#0" expanded="false" />
-            <element signature="e#6945#6956#0" expanded="false" />
-            <element signature="e#7697#7708#0" expanded="false" />
-            <element signature="e#8449#8460#0" expanded="false" />
-            <element signature="e#9201#9212#0" expanded="false" />
-            <element signature="e#9953#9964#0" expanded="false" />
-            <element signature="e#10705#10716#0" expanded="false" />
+            <element signature="e#1281#1295#0" expanded="false" />
+            <element signature="e#2067#2081#0" expanded="false" />
+            <element signature="e#2853#2868#0" expanded="false" />
+            <element signature="e#3640#3652#0" expanded="false" />
+            <element signature="e#4421#4432#0" expanded="false" />
+            <element signature="e#5173#5184#0" expanded="false" />
+            <element signature="e#5925#5936#0" expanded="false" />
+            <element signature="e#6677#6688#0" expanded="false" />
+            <element signature="e#7429#7440#0" expanded="false" />
+            <element signature="e#8181#8192#0" expanded="false" />
+            <element signature="e#8933#8944#0" expanded="false" />
+            <element signature="e#9685#9696#0" expanded="false" />
+            <element signature="e#10437#10448#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/Gravity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07861635" vertical-offset="0" max-vertical-offset="954">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18867925" vertical-offset="0" max-vertical-offset="954">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/jbox2d/jbox2d-library-2.2.1.1-sources.jar!/org/jbox2d/dynamics/Body.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44025156" vertical-offset="0" max-vertical-offset="16440">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+          <folding>
+            <element signature="e#10249#10250#0" expanded="true" />
+            <element signature="e#10272#10273#0" expanded="true" />
           </folding>
         </state>
       </provider>
