@@ -1,8 +1,11 @@
 package controller;
 
 import enums.GameState;
+import levelGeneration.Level;
 import model.Model;
+import view.View;
 
+import javax.naming.ldap.Control;
 import java.awt.event.KeyEvent;
 
 /**
@@ -12,26 +15,35 @@ public class Controller
 {
     // region Constants
     public final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
-    public final int   VELOCITY_ITERATIONS_PER_STEP = 1;
-    public final int   POSITION_ITERATIONS_PER_STEP = 1;
+    public final int VELOCITY_ITERATIONS_PER_STEP = 1;
+    public final int POSITION_ITERATIONS_PER_STEP = 1;
+
+    public final GameState INITIAL_STATE = GameState.LOADING;
     // endregion
 
     // region Supporting Objects
-    // TODO: TIMER
+    private Model model;
+    private View view;
     // endregion
 
     // region Fields
-    private Model model;
     //VIEW
     private GameState state;
     private int gravMagnitude;
     private int gravX, gravY;
     // endregion
 
+
     // region Getters/Setters
     public Model getModel()
     {
         return model;
+    }
+
+
+    public void setModel(Model m)
+    {
+        model = m;
     }
 
     public GameState getState()
@@ -49,9 +61,31 @@ public class Controller
     /**
      *
      */
-    public Controller()
+    private Controller()
     {
+        this.state = INITIAL_STATE;
+    }
 
+
+    /**
+     *
+     * @param model
+     */
+    public Controller(Model model, View view)
+    {
+        this();
+        this.model = model;
+        this.view = view;
+    }
+
+
+    public boolean loadLevel(Level level)
+    {
+        if (model.buildLevel(level))
+            if (view.buildLevelFromModel())
+                return true;
+
+        return false;
     }
 
 
@@ -69,7 +103,16 @@ public class Controller
      */
     public void renderView()
     {
-        // TODO : VIEW RENDERING
+        view.update();
+    }
+
+
+    /**
+     *
+     */
+    public void getInputs()
+    {
+        applyUserInput(view.pollInput());
     }
 
 
@@ -77,7 +120,7 @@ public class Controller
      *
      * @param keyCode
      */
-    public void userInput(int keyCode)
+    private void applyUserInput(int keyCode)
     {
         switch (keyCode)
         {

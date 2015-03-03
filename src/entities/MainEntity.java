@@ -26,16 +26,4 @@ public class MainEntity extends Entity
 		this.linearDamping = 0.0f;
 		this.angularDamping = 0.0f;
 	}
-
-	/**
-	 * 
-	 * @param dirX
-	 * @param dirY
-	 * @param mag
-	 */
-	public void ApplyForce(int dirX, int dirY, float mag) {
-		// TODO - implement MainEntity.ApplyForce
-		throw new UnsupportedOperationException();
-	}
-
 }

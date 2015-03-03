@@ -1,12 +1,12 @@
 package model;
 
+import controller.Controller;
 import entities.*;
 import levelGeneration.Level;
+import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +15,14 @@ public class Model
 	// region Constants
 	private final float PLAYER_GRAVITY_ACCELERATION_SCALE = 5.0f;
 	private final float DEFAULT_DENSITY = 1.0f;
+
+	private final float WALL_FRICTION = 0.5f;
+	private final float WALL_RESTITUTION = 0.25f;
 	// endregion
 
 	// region Fields
+	private Controller controller;
+
 	private World world;
 	private Body mainBody;
 	private ViewEntity mainEntity;
@@ -28,6 +33,11 @@ public class Model
 	// endregion
 
 	// region Getters
+	public Controller getController()
+	{
+		return controller;
+	}
+
 	public World getWorld()
 	{
 		return world;
@@ -51,6 +61,14 @@ public class Model
 		return staticEntities;
 	}
 	// endregion
+
+	// region Setters
+	public void setController(Controller controller)
+	{
+		this.controller = controller;
+	}
+	// endregion
+
 
 	/**
 	 *
@@ -107,6 +125,7 @@ public class Model
 	public void stepWorld(float timeStep, int velocityIt, int positionIt)
 	{
 		mainBody.applyForceToCenter(currentGravity);
+		// TODO: Apply forces to other player-gravity dynamic bodies if/when they exist
 		world.step(timeStep, velocityIt, positionIt);
 	}
 
@@ -126,8 +145,6 @@ public class Model
 		public World buildEnvironment(Level level)
 		{
 			World world = new World(level.getGravityVector());
-
-			// TODO: STANDARD LEVEL BOUNDING BOX
 
 			Entity e = level.getMainEntity();
 			BodyDef bodyDef = constructBodyDef(e);
@@ -157,6 +174,8 @@ public class Model
 				else if (body.getType() == BodyType.STATIC)
 					staticEntities.add(v);
 			}
+			
+			world = addStandardWalls(world);
 
 			return world;
 		}
@@ -181,6 +200,11 @@ public class Model
 		}
 
 
+		/**
+		 *
+		 * @param entity
+		 * @return
+		 */
 		private FixtureDef constructFixtureDef(Entity entity)
 		{
 			assert entity != null;
@@ -196,6 +220,62 @@ public class Model
 			fixtureDef.density = DEFAULT_DENSITY;
 
 			return fixtureDef;
+		}
+
+
+		/**
+		 *
+		 * @param world
+		 * @return
+		 */
+		private World addStandardWalls(World world)
+		{
+			BodyDef bd = new BodyDef();
+			Body 	ground 	  = getWorld().createBody(bd),
+					leftWall  = getWorld().createBody(bd),
+					rightWall = getWorld().createBody(bd),
+					ceiling   = getWorld().createBody(bd);
+
+			// Dimensions for the bounding box
+			// Currently a 200x100 area
+			float 	topHeight = 100.0f,
+					bottomHeight = 0.0f,
+					leftWidth = -100.0f,
+					rightWidth = 100.0f;
+
+			// Create bounding box dimensioned according to above numbers
+			Vec2	groundLeft = new Vec2(leftWidth, bottomHeight), groundRight = new Vec2(rightWidth, bottomHeight),
+					leftWallTop = new Vec2(leftWidth, topHeight), leftWallBottom = new Vec2(leftWidth, bottomHeight),
+					rightWallTop = new Vec2(rightWidth, topHeight), rightWallBottom = new Vec2(rightWidth, bottomHeight),
+					ceilingLeft = new Vec2(leftWidth, topHeight), ceilingRight = new Vec2(rightWidth, topHeight);
+
+			EdgeShape shape = new EdgeShape();
+			FixtureDef fd = new FixtureDef();
+			fd.density = 0.0f;
+			fd.friction = WALL_FRICTION;
+			fd.restitution = WALL_RESTITUTION;
+
+			// Ground
+			shape.set(groundLeft, groundRight);
+			fd.shape = shape;
+			ground.createFixture(fd);
+
+			// Left Wall
+			shape.set(leftWallTop, leftWallBottom);
+			fd.shape = shape;
+			leftWall.createFixture(fd);
+
+			// Right Wall
+			shape.set(rightWallTop, rightWallBottom);
+			fd.shape = shape;
+			rightWall.createFixture(fd);
+
+			// Ceiling
+			shape.set(ceilingLeft, ceilingRight);
+			fd.shape = shape;
+			ceiling.createFixture(fd);
+
+			return world;
 		}
 	}
 }

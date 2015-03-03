@@ -25,7 +25,7 @@ public class Game
             previousTime = currentTime;
             lagTime += elapsedTime;
 
-            // TODO : PROCESS INPUTS
+            controller.getInputs();
 
             for ( ; lagTime >= controller.STEP_PERIOD; lagTime -= controller.STEP_PERIOD)
                 controller.updateModel();

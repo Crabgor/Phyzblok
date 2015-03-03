@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class PhyzRectangle extends Rectangle
 {
-    private ViewEntity entity;  // TODO: Change to ViewEntity if that works better
+    private ViewEntity entity;
 
     public ViewEntity getEntity()
     {

@@ -5,9 +5,7 @@ import levelGeneration.Level;
 import model.Model;
 import org.jbox2d.common.Vec2;
 import org.junit.Test;
-
 import java.awt.*;
-import java.util.Iterator;
 
 /**
  * Created by Cregnacht on 2015-03-02.
