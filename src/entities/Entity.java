@@ -132,21 +132,48 @@ public abstract class Entity
 	}
 
 
+	/**
+	 *
+	 * @return The X position of the entity, converted to the View coordinate system.
+	 *
+	 * Post-condition: The position is converted to the View coordinate system.
+	 */
 	public float getBodyXPosition()	// Only view/controller need this
 	{
 		return physicsBody.getPosition().x;
+		// TODO: Change to View coordinate system
 	}
 
 
+	/**
+	 *
+	 * @return The Y position of the entity, converted to the View coordinate system.
+	 *
+	 * Post-condition: The position is converted to the View coordinate system.
+	 */
 	public float getBodyYPosition() // Only view/controller need this
 	{
 		return physicsBody.getPosition().y;
+		// TODO: Change to View coordinate system
 	}
 
 
-	public float angle() // Only view/controller need this
+	public float getBodyAngle() // Only view/controller need this
 	{
 		return physicsBody.getAngle();
+	}
+
+
+	public Body getPhysicsBody()
+	{
+		return physicsBody;
+	}
+	// endregion
+
+	// region Setters
+	public void setPhysicsBody(Body body)
+	{
+		physicsBody = body;
 	}
 	// endregion
 

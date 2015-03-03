@@ -11,9 +11,9 @@ import java.awt.event.KeyEvent;
 public class Controller
 {
     // region Constants
-    private final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
-    private final int   VELOCITY_ITERATIONS_PER_STEP = 1;
-    private final int   POSITION_ITERATIONS_PER_STEP = 1;
+    public final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
+    public final int   VELOCITY_ITERATIONS_PER_STEP = 1;
+    public final int   POSITION_ITERATIONS_PER_STEP = 1;
     // endregion
 
     // region Supporting Objects
@@ -55,10 +55,21 @@ public class Controller
     }
 
 
-    public void step()
+    /**
+     *
+     */
+    public void updateModel()
     {
         model.stepWorld(STEP_PERIOD, VELOCITY_ITERATIONS_PER_STEP, POSITION_ITERATIONS_PER_STEP);
-        // TODO: VIEW REDRAW + TIMER CALCULATIONS??
+    }
+
+
+    /**
+     *
+     */
+    public void renderView()
+    {
+        // TODO : VIEW RENDERING
     }
 
 

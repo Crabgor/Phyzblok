@@ -2,26 +2,29 @@ package model;
 
 import entities.*;
 import levelGeneration.Level;
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model
 {
 	// region Constants
+	private final float PLAYER_GRAVITY_ACCELERATION_SCALE = 5.0f;
 	private final float DEFAULT_DENSITY = 1.0f;
 	// endregion
 
 	// region Fields
 	private World world;
 	private Body mainBody;
-	private MainEntity mainEntity;
-	private List<Body> dynamicBodies;
-	private List<Entity> dynamicEntities;
+	private ViewEntity mainEntity;
+	private List<ViewEntity> dynamicEntities;
+	private List<ViewEntity> staticEntities;
 	// TODO: LIST OF DYNAMIC BODIES UNDER PLAYER GRAVITY
 	private Vec2 currentGravity;
-	// private float[] goalLocation;
 	// endregion
 
 	// region Getters
@@ -31,15 +34,21 @@ public class Model
 	}
 
 
-	public Body getMainBody()
+	public ViewEntity getMainEntity()
 	{
-		return mainBody;
+		return mainEntity;
 	}
 
 
-	public List<Body> getDynamicBodies()
+	public List<ViewEntity> getDynamicEntities()
 	{
-		return dynamicBodies;
+		return dynamicEntities;
+	}
+
+
+	public List<ViewEntity> getStaticEntities()
+	{
+		return staticEntities;
 	}
 	// endregion
 
@@ -50,7 +59,9 @@ public class Model
 	{
 		world = null;
 		mainBody = null;
-		dynamicBodies = new ArrayList<Body>();
+		mainEntity = null;
+		dynamicEntities = new ArrayList<ViewEntity>();
+		staticEntities = new ArrayList<ViewEntity>();
 		currentGravity = new Vec2(0.0f, 0.0f);
 	}
 
@@ -63,24 +74,13 @@ public class Model
 	 */
 	public boolean buildLevel(Level level)
 	{
-		// TODO: GROUND BOX
 		// Construct physics world + load physics bodies
 		World w = new WorldBuilder().buildEnvironment(level);
 
 		if (w == null || w.getBodyCount() <= 0) return false;
 
-		// Get references to all dynamic bodies for visual updates
-		Body b = w.getBodyList();
-
-		mainBody = b;
-		if (b.getNext() != null) b = b.getNext();
-		while (b.getNext() != null)
-		{
-			if (b.getType() == BodyType.DYNAMIC)
-				dynamicBodies.add(b);
-			b = b.getNext();
-		}
-
+		// Get references to first body in list, which must be the Main Body
+		mainBody = w.getBodyList();
 		world = w;
 		return true;
 	}
@@ -94,6 +94,7 @@ public class Model
 	 */
 	public void applyPlayerGravity(int x, int y, int mag)
 	{
+		mag *= PLAYER_GRAVITY_ACCELERATION_SCALE;
 		Vec2 gravity = new Vec2(x * mag, y * mag);
 		if (currentGravity == gravity) return;
 		currentGravity = gravity;
@@ -107,7 +108,6 @@ public class Model
 	{
 		mainBody.applyForceToCenter(currentGravity);
 		world.step(timeStep, velocityIt, positionIt);
-		// TODO: OTHER STUFF
 	}
 
 
@@ -127,13 +127,18 @@ public class Model
 		{
 			World world = new World(level.getGravityVector());
 
+			// TODO: STANDARD LEVEL BOUNDING BOX
+
 			Entity e = level.getMainEntity();
 			BodyDef bodyDef = constructBodyDef(e);
 			Body body = world.createBody(bodyDef);
 			FixtureDef fixtureDef = constructFixtureDef(e);
-			body.createFixture(fixtureDef);
 			body.m_mass = e.getMass();
 			body.m_invMass = 1 / e.getMass();
+			body.createFixture(fixtureDef);
+			mainBody = body;
+			e.setPhysicsBody(mainBody);
+			mainEntity = new ViewEntity(e);
 
 			for (int i = 0; i < level.getEntities().length; i++)
 			{
@@ -144,6 +149,13 @@ public class Model
 				body.createFixture(fixtureDef);
 				body.m_mass = e.getMass();
 				body.m_invMass = 1 / e.getMass();
+				e.setPhysicsBody(body);
+				ViewEntity v = new ViewEntity(e);
+
+				if (body.getType() == BodyType.DYNAMIC)
+					dynamicEntities.add(v);
+				else if (body.getType() == BodyType.STATIC)
+					staticEntities.add(v);
 			}
 
 			return world;
@@ -164,7 +176,6 @@ public class Model
 			bodyDef.gravityScale = entity.getGravityScale();
 			bodyDef.angularDamping = entity.getAngularDamping();
 			bodyDef.linearDamping = entity.getLinearDamping();
-			// TODO: OTHERS?
 
 			return bodyDef;
 		}
@@ -174,10 +185,15 @@ public class Model
 		{
 			assert entity != null;
 			FixtureDef fixtureDef = new FixtureDef();
+
+			// TODO: HANDLE CIRCLES + OTHER SHAPES
+			PolygonShape polygonShape = new PolygonShape();
+			polygonShape.setAsBox(entity.getWidth(), entity.getHeight());
+
+			fixtureDef.shape = polygonShape;
 			fixtureDef.friction = entity.getFrictionCoeff();
 			fixtureDef.restitution = entity.getRestitutionCoeff();
 			fixtureDef.density = DEFAULT_DENSITY;
-			// TODO: OTHERS?
 
 			return fixtureDef;
 		}
