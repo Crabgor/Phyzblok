@@ -24,6 +24,18 @@ public class PhyzRectangle extends Rectangle
 
 
     /**
+     *
+     * @param entity
+     *
+     * Pre-condition: The shape of the given entity is a Rectangle.
+     */
+    public PhyzRectangle(ViewEntity entity)
+    {
+        super((Rectangle) entity.getShape());
+        this.entity = entity;
+    }
+
+    /**
      * Updates the position of the shape using the position of the corresponding physics body.
      *
      * Post-condition: The location of the shape is modified.

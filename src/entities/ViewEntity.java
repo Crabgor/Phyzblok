@@ -1,6 +1,7 @@
 package entities;
 
 import org.jbox2d.dynamics.Body;
+import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 
@@ -52,7 +53,7 @@ public class ViewEntity
     public float getY() // Only view/controller need this
     {
         return physicsBody.getPosition().y;
-        // TODO: Change to View coordinate system
+        // TODO: Change to View coordinate system, round up if needed to prevent floating point error
     }
 
 
@@ -91,6 +92,14 @@ public class ViewEntity
     // endregion
 
 
+    /**
+     *
+     * @param shape
+     * @param colour
+     * @param physicsBody
+     * @param width
+     * @param height
+     */
     public ViewEntity(Shape shape, Color colour, Body physicsBody, int width, int height)
     {
         this.shape = shape;
@@ -98,9 +107,14 @@ public class ViewEntity
         this.physicsBody = physicsBody;
         this.width = width;
         this.height = height;
+        shapeConstructor();
     }
 
 
+    /**
+     *
+     * @param entity
+     */
     public ViewEntity(Entity entity)
     {
         this.shape = entity.getShape();
@@ -108,7 +122,22 @@ public class ViewEntity
         this.physicsBody = entity.getPhysicsBody();
         this.width = (int) entity.getWidth();
         this.height = (int) entity.getHeight();
+        shapeConstructor();
     }
 
 
+    /**
+     *
+     */
+    private void shapeConstructor()
+    {
+        String s = this.shape.toString();
+        if (s == new Rectangle().toString())
+        {
+            Rectangle tempShape = (Rectangle) this.shape;
+            tempShape.setLocation((int) getX(), (int) getY());
+            tempShape.setSize(getWidth(), getHeight());
+            this.shape = tempShape;
+        }
+    }
 }
