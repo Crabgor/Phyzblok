@@ -40,7 +40,6 @@ public class Controller
         return model;
     }
 
-
     public void setModel(Model m)
     {
         model = m;
