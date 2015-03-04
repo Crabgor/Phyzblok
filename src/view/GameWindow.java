@@ -1,12 +1,10 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 
 public class GameWindow extends JFrame
@@ -19,17 +17,14 @@ public class GameWindow extends JFrame
     }*/
     public GameWindow(String name) {
         super(name);
-        JFrame frame = new JFrame("GameDemo");
-        frame.setLocation(1200, 400);
-        frame.setSize(PREF_W, PREF_H);
-        //frame.pack();  //sizes so everything fits
-        frame.setVisible(true);
+        setLocation(1200, 400); // TODO: Change
+        setSize(PREF_W, PREF_H);
+        setVisible(true);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //ConstructionHelper();
-
-
-
     }
+
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(PREF_W, PREF_H);

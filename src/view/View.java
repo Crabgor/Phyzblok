@@ -6,16 +6,17 @@ import model.Model;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.Scanner;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 /**
  * Created by Cregnacht on 2015-03-03.
  */
@@ -23,11 +24,12 @@ public class View //extends JPanel
 {
     //private static final int PREF_W = 700;
    // private static final int PREF_H = PREF_W;
-    private GameWindow window;
+    private static GameWindow window;
+    private static EntityPanel Panel;
     // region Fields
-    Controller controller;
-    JPanel staticsPanel;
-    JPanel dynamicsPanel;
+    private Controller controller;
+    private static EntityPanel staticsPanel;
+    private static EntityPanel dynamicsPanel;
 
     PhyzRectangle mainShape;
     List<PhyzRectangle> dynamics;
@@ -101,25 +103,56 @@ public class View //extends JPanel
 
     public boolean buildLevelFromModel()
     {
-        controller.getModel().getMainEntity();
-        controller.getModel().getDynamicEntities();
+        ViewEntity mainShape = controller.getModel().getMainEntity();
+        List<ViewEntity> staticEntities = controller.getModel().getStaticEntities();
+        List<ViewEntity> dynamicEntities = controller.getModel().getDynamicEntities();
+        PhyzShapeFactory psf = new PhyzShapeFactory();
+
+        PhyzRectangle mainRectangle = psf.MakeRectangle(mainShape);
+        List<PhyzRectangle> staticRects = psf.MakeRectangles(staticEntities);
+        List<PhyzRectangle> dynamicRects =  psf.MakeRectangles(dynamicEntities);
+
+
+        createGUI();
+
+        dynamicsPanel.AddShape(mainRectangle);
+        staticsPanel.AddShapes(staticRects);
+        dynamicsPanel.AddShapes(dynamicRects);
+
+        window.revalidate();
+        window.repaint();
+
         // TODO: Finish implementation of View.buildLevelFromModel
         throw new NotImplementedException();
     }
 
-//window
-    private static void createAndShowGui() {
 
-        GameWindow frame = new GameWindow("Game_Window");
-        add(panel, BorderLayout.CENTER)
+//window
+    private static void createGUI()
+    {
+        window = new GameWindow("PhyzBlok");
+
+        dynamicsPanel = new EntityPanel();
+        dynamicsPanel.setSize(300, 50);
+        dynamicsPanel.setVisible(true);
+        staticsPanel = new EntityPanel();
+        staticsPanel.setSize(300, 50);
+        staticsPanel.setVisible(true);
+        // TODO: Currently panels fill window, fix this if necessary
+        window.add(dynamicsPanel);
+        window.add(staticsPanel);
+        //window.revalidate();
+        //window.repaint();
+
+
     }
 
-
+/*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGui();
+                createGUI();
             }
         });
-    }
+    }*/
 }
