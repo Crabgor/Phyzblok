@@ -23,6 +23,7 @@ public class Model implements IModelView
 
 	// Dimensions for the bounding box
 	// Currently a 200x100 area
+	// Top-Left corner is 0,0
 	public final float 	TOP_HEIGHT = 0.000f,
 						BOTTOM_HEIGHT = -100.000f,
 						LEFT_WIDTH = 0.000f,
@@ -122,7 +123,7 @@ public class Model implements IModelView
 	 */
 	public void applyPlayerGravity(int x, int y, int mag)
 	{
-		mag *= PLAYER_GRAVITY_ACCELERATION_SCALE;
+		mag *= PLAYER_GRAVITY_ACCELERATION_SCALE * mainBody.m_mass;	// Create force from acceleration
 		Vec2 gravity = new Vec2(x * mag, y * mag);
 		if (currentGravity == gravity) return;
 		currentGravity = gravity;

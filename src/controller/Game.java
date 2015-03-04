@@ -7,8 +7,20 @@ import enums.GameState;
  */
 public class Game
 {
-    Controller controller;
+    private Controller controller;
 
+    private static Game singleton;
+    public  static Game getInstance(Controller c)
+    {
+        if (singleton == null)
+            singleton = new Game(c);
+        return singleton;
+    }
+
+    protected Game(Controller controller)
+    {
+        this.controller = controller;
+    }
 
     /**
      *

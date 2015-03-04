@@ -11,13 +11,11 @@ public class GameWindow extends JFrame
 {
     private static final int PREF_W = 800;
     private static final int PREF_H = PREF_W;
-    /*private void ConstructionHelper(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //AddSquares(posX, posY, hight, with);
-    }*/
+
+
     public GameWindow(String name) {
         super(name);
-        setLocation(1200, 400); // TODO: Change
+        setLocation(1200, 400); // TODO: Change if necessary
         setSize(PREF_W, PREF_H);
         setVisible(true);
 

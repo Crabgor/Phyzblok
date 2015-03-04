@@ -2,6 +2,8 @@ package view;
 
 import controller.Controller;
 import entities.ViewEntity;
+import enums.GameState;
+import interfaces.IModelView;
 import model.Model;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -20,30 +22,19 @@ import javax.swing.border.EmptyBorder;
 /**
  * Created by Cregnacht on 2015-03-03.
  */
-public class View //extends JPanel
+public class View implements IModelView
 {
-    //private static final int PREF_W = 700;
-   // private static final int PREF_H = PREF_W;
-    private static GameWindow window;
-    private static EntityPanel Panel;
     // region Fields
+    private /*static*/ GameWindow window;
     private Controller controller;
-    private static EntityPanel staticsPanel;
-    private static EntityPanel dynamicsPanel;
+    private /*static*/ EntityPanel staticsPanel;
+    private /*static*/ EntityPanel dynamicsPanel;
 
-    PhyzRectangle mainShape;
-    List<PhyzRectangle> dynamics;
+    private PhyzRectangle mainShape;
+    private List<PhyzRectangle> dynamics;
+
+    private InputListener inputListener = InputListener.getInstance();
     // endregion
-/*
-    public View(GameWindow frame) {
-        this.window = frame;
-        ActionMap actionMap = getActionMap();
-        int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
-        InputMap inputMap = getInputMap(condition);
-    }
-*/
-
-
 
     // region Getters
     public Controller getController()
@@ -95,62 +86,75 @@ public class View //extends JPanel
      */
     public int pollInput()
     {
-        int keycode = 0x00;
-        // TODO: Finish implementation of View.pollInput
-        return keycode;
+        return inputListener.getKeycode();
     }
 
 
     public boolean buildLevelFromModel()
     {
-        ViewEntity mainShape = controller.getModel().getMainEntity();
+        ViewEntity mainEntity = controller.getModel().getMainEntity();
         List<ViewEntity> staticEntities = controller.getModel().getStaticEntities();
         List<ViewEntity> dynamicEntities = controller.getModel().getDynamicEntities();
         PhyzShapeFactory psf = new PhyzShapeFactory();
 
-        PhyzRectangle mainRectangle = psf.MakeRectangle(mainShape);
+        mainShape = psf.MakeRectangle(mainEntity);
+        dynamics =  psf.MakeRectangles(dynamicEntities);
         List<PhyzRectangle> staticRects = psf.MakeRectangles(staticEntities);
-        List<PhyzRectangle> dynamicRects =  psf.MakeRectangles(dynamicEntities);
-
 
         createGUI();
 
-        dynamicsPanel.AddShape(mainRectangle);
+        dynamicsPanel.AddShape(mainShape);
+        dynamicsPanel.AddShapes(dynamics);
         staticsPanel.AddShapes(staticRects);
-        dynamicsPanel.AddShapes(dynamicRects);
 
         window.revalidate();
         window.repaint();
 
-        // TODO: Finish implementation of View.buildLevelFromModel
-        throw new NotImplementedException();
+        return true;    // TODO: Ensure successful method completion
     }
 
 
-//window
-    private static void createGUI()
+    private /*static*/ void createGUI()
     {
         window = new GameWindow("PhyzBlok");
-
-<<<<<<< Updated upstream
         dynamicsPanel = new EntityPanel();
         dynamicsPanel.setSize(300, 50);
-        dynamicsPanel.setVisible(true);
+        //dynamicsPanel.setVisible(true);
+        dynamicsPanel.setBackground(Color.BLACK);
         staticsPanel = new EntityPanel();
         staticsPanel.setSize(300, 50);
-        staticsPanel.setVisible(true);
+        //staticsPanel.setVisible(true);
+        staticsPanel.setBackground(Color.BLUE);
         // TODO: Currently panels fill window, fix this if necessary
         window.add(dynamicsPanel);
         window.add(staticsPanel);
-        //window.revalidate();
-        //window.repaint();
-=======
-        GameWindow frame = new GameWindow("Game_Window");
-        //add(panel, BorderLayout.CENTER)
+
+        window.addKeyListener(inputListener);
     }
->>>>>>> Stashed changes
 
 
+    @Override
+    public void changeState(GameState state)
+    {
+        switch (state)
+        {
+            case EXITING:
+                break;
+            case LEVEL_SELECT:
+                break;
+            case LOADING:
+                break;
+            case MAIN_MENU:
+                break;
+            case PAUSE:
+                break;
+            case PLAY:
+                dynamicsPanel.setVisible(true);
+                staticsPanel.setVisible(true);
+                break;
+            default:
+                break;
+        }
     }
 
 /*

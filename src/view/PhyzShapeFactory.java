@@ -18,7 +18,7 @@ public class PhyzShapeFactory
      */
     public PhyzRectangle MakeRectangle(ViewEntity entity)
     {
-        if (entity.getShape().toString() == new Rectangle().toString())
+        if (entity.getShape().getClass() == new Rectangle().getClass())
             return new PhyzRectangle(entity);
         return null;
     }
@@ -33,7 +33,7 @@ public class PhyzShapeFactory
     {
         List<PhyzRectangle> rectangles = new ArrayList<PhyzRectangle>();
         for (ViewEntity v : entities)
-            if (v.getShape().toString() == new Rectangle().toString())
+            if (v.getShape().getClass() == new Rectangle().getClass())
                 rectangles.add(new PhyzRectangle(v));
         return rectangles;
     }

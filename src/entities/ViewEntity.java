@@ -65,7 +65,7 @@ public class ViewEntity
      */
     public float getY() // Only view/controller need this
     {
-        return physicsBody.getPosition().y + height/2;
+        return (physicsBody.getPosition().y + height/2) * -1;
     }
 
 

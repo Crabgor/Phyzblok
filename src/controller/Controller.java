@@ -27,7 +27,6 @@ public class Controller
     // endregion
 
     // region Fields
-    //VIEW
     private GameState state;
     private int gravMagnitude;
     private int gravX, gravY;
@@ -52,7 +51,11 @@ public class Controller
 
     public void setState(GameState state)
     {
+        if (this.state == state) return;
         this.state = state;
+        notifyModelViewStateChange();
+
+        // TODO: How do we start a game loop when the state changes?
     }
     // endregion
 
@@ -83,7 +86,6 @@ public class Controller
         if (model.buildLevel(level))
             if (view.buildLevelFromModel())
                 return true;
-
         return false;
     }
 
@@ -106,10 +108,13 @@ public class Controller
     }
 
 
-    private void notifyModelViewStateChange(GameState state)
+    /**
+     *
+     */
+    private void notifyModelViewStateChange()
     {
         model.changeState(state);
-        // TODO: view.changeState(state);
+        view.changeState(state);
     }
 
 

@@ -9,7 +9,7 @@ public class MainEntity extends Entity
 	public MainEntity(float mass, float xModel, float yModel, float width, float height)
 	{
 		this.mass = mass;
-		this.colour = Color.CYAN;
+		this.colour = Color.RED;
 		this.gravityType = Gravity.PLAYER;
 		this.positionLocked = false;
 		this.shape = new Rectangle(); // TODO : FIX SHAPE PARAMS
