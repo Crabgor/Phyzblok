@@ -32,6 +32,9 @@ public class PhyzRectangle extends Rectangle
     public PhyzRectangle(ViewEntity entity)
     {
         super((Rectangle) entity.getShape());
+        this.setSize(this.width*10, this.height*10);
+        this.setLocation(this.x, this.y);
+        this.setLocation((int) this.getX()*2, (int) this.getY()*2);
         this.entity = entity;
     }
 

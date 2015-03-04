@@ -24,6 +24,10 @@ import javax.swing.border.EmptyBorder;
  */
 public class View implements IModelView
 {
+    // region Constants
+    public static final int MODEL_VIEW_RATIO = 4;
+    // endregion
+
     // region Fields
     private /*static*/ GameWindow window;
     private Controller controller;
@@ -103,12 +107,18 @@ public class View implements IModelView
 
         createGUI();
 
-        dynamicsPanel.AddShape(mainShape);
-        dynamicsPanel.AddShapes(dynamics);
+        staticsPanel.AddShape(mainShape);
+        staticsPanel.AddShapes(dynamics);
+        staticsPanel.revalidate();
+        staticsPanel.repaint();
+
         staticsPanel.AddShapes(staticRects);
+        staticsPanel.revalidate();
+        staticsPanel.repaint();
 
         window.revalidate();
         window.repaint();
+
 
         return true;    // TODO: Ensure successful method completion
     }
@@ -117,17 +127,28 @@ public class View implements IModelView
     private /*static*/ void createGUI()
     {
         window = new GameWindow("PhyzBlok");
+        window.setLayout(null);
+       // window.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+
         dynamicsPanel = new EntityPanel();
-        dynamicsPanel.setSize(300, 50);
+        dynamicsPanel.setSize(800, 800);
         //dynamicsPanel.setVisible(true);
-        dynamicsPanel.setBackground(Color.BLACK);
+        //dynamicsPanel.setBackground(Color.PINK);
+        dynamicsPanel.setOpaque(false);
+        dynamicsPanel.setLocation(0,0);
+        //pack();
         staticsPanel = new EntityPanel();
-        staticsPanel.setSize(300, 50);
+        staticsPanel.setSize(800, 800);
+
         //staticsPanel.setVisible(true);
-        staticsPanel.setBackground(Color.BLUE);
+        //staticsPanel.setBackground(Color.BLUE);
+        staticsPanel = new EntityPanel();
+        staticsPanel.setSize(800, 800);
+        staticsPanel.setOpaque(false);
         // TODO: Currently panels fill window, fix this if necessary
-        window.add(dynamicsPanel);
-        window.add(staticsPanel);
+        window.getContentPane().add(staticsPanel);
+        window.getContentPane().add(dynamicsPanel);
+
 
         window.addKeyListener(inputListener);
     }

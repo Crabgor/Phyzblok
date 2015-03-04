@@ -2,6 +2,7 @@ package entities;
 
 import org.jbox2d.dynamics.Body;
 import org.w3c.dom.css.Rect;
+import view.View;
 
 import java.awt.*;
 
@@ -46,7 +47,8 @@ public class ViewEntity
      */
     public float getX()	// Only view/controller need this
     {
-        return physicsBody.getPosition().x - width/2;
+
+        return (physicsBody.getPosition().x - width/2) * View.MODEL_VIEW_RATIO;
     }
 
 
@@ -65,7 +67,7 @@ public class ViewEntity
      */
     public float getY() // Only view/controller need this
     {
-        return (physicsBody.getPosition().y + height/2) * -1;
+        return (physicsBody.getPosition().y + height/2) * -1 * View.MODEL_VIEW_RATIO;
     }
 
 
@@ -85,7 +87,7 @@ public class ViewEntity
      */
     public int getWidth()
     {
-        return width;
+        return width * View.MODEL_VIEW_RATIO;
     }
 
 
@@ -95,7 +97,7 @@ public class ViewEntity
      */
     public int getHeight()
     {
-        return height;
+        return height * View.MODEL_VIEW_RATIO;
     }
     // endregion
 
@@ -132,8 +134,8 @@ public class ViewEntity
         this.shape = entity.getShape();
         this.colour = entity.getColour();
         this.physicsBody = entity.getPhysicsBody();
-        this.width = (int) entity.getWidth();
-        this.height = (int) entity.getHeight();
+        this.width = (int) (entity.getWidth() + 0.900f);
+        this.height = (int) (entity.getHeight() + 0.900f);
         shapeConstructor();
     }
 
@@ -150,6 +152,7 @@ public class ViewEntity
             tempShape.setLocation((int) getX(), (int) getY());
             tempShape.setSize(getWidth(), getHeight());
             this.shape = tempShape;
+           // System.out.println(physicsBody.getPosition().x - width/2);
         }
     }
 }

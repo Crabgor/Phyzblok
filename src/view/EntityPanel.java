@@ -23,6 +23,7 @@ class EntityPanel extends JPanel{
 
     public void AddShape(PhyzRectangle rectangle)
     {
+        
         rectangles.add(rectangle);
     }
 
@@ -31,6 +32,7 @@ class EntityPanel extends JPanel{
     {
         for (PhyzRectangle sh : shapes)
             rectangles.add(sh);
+
     }
 
     @Override
@@ -42,7 +44,9 @@ class EntityPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        for (PhyzRectangle rect : rectangles) {
+        for (PhyzRectangle rect : rectangles)
+        {
+            g2.fillRect(rect.x, rect.y, rect.width, rect.height);
             g2.draw(rect);
         }
     }

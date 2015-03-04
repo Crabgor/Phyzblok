@@ -12,7 +12,7 @@ public class WallEntity extends Entity
         this.colour = Color.GRAY;
         this.gravityType = Gravity.NONE;
         this.positionLocked = true;
-        this.shape = new Rectangle(); // TODO : FIX SHAPE PARAMS
+        this.shape = new Rectangle((int) xModel,(int) yModel, (int) width, (int) height); // TODO : FIX SHAPE PARAMS
         this.xModel = xModel;
         this.yModel = yModel;
         this.width = width;

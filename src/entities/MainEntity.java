@@ -12,7 +12,7 @@ public class MainEntity extends Entity
 		this.colour = Color.RED;
 		this.gravityType = Gravity.PLAYER;
 		this.positionLocked = false;
-		this.shape = new Rectangle(); // TODO : FIX SHAPE PARAMS
+		this.shape = new Rectangle((int) xModel,(int) yModel, (int) width, (int) height); // TODO : FIX SHAPE PARAMS
 		this.xModel = xModel;
 		this.yModel = yModel;
 		this.width = width;

@@ -31,10 +31,14 @@ public class GameInit
         model.setController(controller);
         view.setController(controller);
 
-        MainEntity mainEntity = new MainEntity(10.0f, 30.0f, -10.0f, 2.0f, 2.0f);
+        MainEntity mainEntity = new MainEntity(5.0f, 5.0f, -10.0f, 2.0f, 2.0f);
         Entity[] entities = {
-                new WallEntity(10.0f, 0.0f, 20.0f, 40.0f),
-                new WallEntity(40.0f, -20.0f, 20.0f, 40.0f),
+               // new WallEntity(10.0f, 0.0f, 20.0f, 10.0f),
+                //new WallEntity(15.0f, -10.0f, 10.0f, 10.0f),
+                new WallEntity(301.0f, 301.0f, 10.0f, 10.0f),
+                //new WallEntity(10.0f, 0.0f, 20.0f, 40.0f), //apparing
+
+                //new WallEntity(15.0f, -10.0f, 10.0f, 30.0f),
                 new StdEntity(100.0f, Color.GREEN, new Rectangle(5, 50, 2, 2), 5.0f, -50.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f) // TODO: Rectangle is probably broken here
         };
         float[] goal = { 100.0f, -100.0f };
