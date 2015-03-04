@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class StdEntity extends Entity
 {
-    public StdEntity(float mass, Color colour, float xModel, float yModel,
+    public StdEntity(float mass, Color colour, Shape shape, float xModel, float yModel,
                      float width, float height, float rotation,
                      float frictionCoeff, float restitutionCoeff, float gravityScale,
                      float linearDamping, float angularDamping)
@@ -15,7 +15,7 @@ public class StdEntity extends Entity
         this.colour = colour;
         this.gravityType = Gravity.STANDARD;
         this.positionLocked = false;
-        this.shape = null;  // TODO : FIX SHAPE
+        this.shape = shape;
         this.xModel = xModel;
         this.yModel = yModel;
         this.width = width;

@@ -2,6 +2,8 @@ package model;
 
 import controller.Controller;
 import entities.*;
+import enums.GameState;
+import interfaces.IModelView;
 import levelGeneration.Level;
 import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -10,7 +12,7 @@ import org.jbox2d.dynamics.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model
+public class Model implements IModelView
 {
 	// region Constants
 	private final float PLAYER_GRAVITY_ACCELERATION_SCALE = 5.0f;
@@ -18,6 +20,14 @@ public class Model
 
 	private final float WALL_FRICTION = 0.5f;
 	private final float WALL_RESTITUTION = 0.25f;
+
+	// Dimensions for the bounding box
+	// Currently a 200x100 area
+	public final float 	TOP_HEIGHT = 0.000f,
+						BOTTOM_HEIGHT = -100.000f,
+						LEFT_WIDTH = 0.000f,
+						RIGHT_WIDTH = 200.000f;
+
 	// endregion
 
 	// region Fields
@@ -130,6 +140,29 @@ public class Model
 	}
 
 
+	@Override
+	public void changeState(GameState state)
+	{
+		switch (state)
+		{
+			case EXITING:
+				break;
+			case LEVEL_SELECT:
+				break;
+			case LOADING:
+				break;
+			case MAIN_MENU:
+				break;
+			case PAUSE:
+				break;
+			case PLAY:
+				break;
+			default:
+				break;
+		}
+	}
+
+
 	/**
 	 *
 	 */
@@ -212,7 +245,7 @@ public class Model
 
 			// TODO: HANDLE CIRCLES + OTHER SHAPES
 			PolygonShape polygonShape = new PolygonShape();
-			polygonShape.setAsBox(entity.getWidth(), entity.getHeight());
+			polygonShape.setAsBox(entity.getWidth()/2, entity.getHeight()/2); // Params are half-width/half-height
 
 			fixtureDef.shape = polygonShape;
 			fixtureDef.friction = entity.getFrictionCoeff();
@@ -231,23 +264,16 @@ public class Model
 		private World addStandardWalls(World world)
 		{
 			BodyDef bd = new BodyDef();
-			Body 	ground 	  = getWorld().createBody(bd),
-					leftWall  = getWorld().createBody(bd),
-					rightWall = getWorld().createBody(bd),
-					ceiling   = getWorld().createBody(bd);
-
-			// Dimensions for the bounding box
-			// Currently a 200x100 area
-			float 	topHeight = 100.0f,
-					bottomHeight = 0.0f,
-					leftWidth = -100.0f,
-					rightWidth = 100.0f;
+			Body 	ground 	  = world.createBody(bd),
+					leftWall  = world.createBody(bd),
+					rightWall = world.createBody(bd),
+					ceiling   = world.createBody(bd);
 
 			// Create bounding box dimensioned according to above numbers
-			Vec2	groundLeft = new Vec2(leftWidth, bottomHeight), groundRight = new Vec2(rightWidth, bottomHeight),
-					leftWallTop = new Vec2(leftWidth, topHeight), leftWallBottom = new Vec2(leftWidth, bottomHeight),
-					rightWallTop = new Vec2(rightWidth, topHeight), rightWallBottom = new Vec2(rightWidth, bottomHeight),
-					ceilingLeft = new Vec2(leftWidth, topHeight), ceilingRight = new Vec2(rightWidth, topHeight);
+			Vec2	bottomLeft = new Vec2(LEFT_WIDTH, BOTTOM_HEIGHT),
+					bottomRight = new Vec2(RIGHT_WIDTH, BOTTOM_HEIGHT),
+					topLeft = new Vec2(LEFT_WIDTH, TOP_HEIGHT),
+					topRight = new Vec2(RIGHT_WIDTH, TOP_HEIGHT);
 
 			EdgeShape shape = new EdgeShape();
 			FixtureDef fd = new FixtureDef();
@@ -256,22 +282,22 @@ public class Model
 			fd.restitution = WALL_RESTITUTION;
 
 			// Ground
-			shape.set(groundLeft, groundRight);
+			shape.set(bottomLeft, bottomRight);
 			fd.shape = shape;
 			ground.createFixture(fd);
 
 			// Left Wall
-			shape.set(leftWallTop, leftWallBottom);
+			shape.set(topLeft, bottomLeft);
 			fd.shape = shape;
 			leftWall.createFixture(fd);
 
 			// Right Wall
-			shape.set(rightWallTop, rightWallBottom);
+			shape.set(topRight, bottomRight);
 			fd.shape = shape;
 			rightWall.createFixture(fd);
 
 			// Ceiling
-			shape.set(ceilingLeft, ceilingRight);
+			shape.set(topLeft, topRight);
 			fd.shape = shape;
 			ceiling.createFixture(fd);
 

@@ -19,10 +19,9 @@ public class TestKeyReading
 
         while (true)
         {
-            keycode = new InputListener().getKeycode();
+            keycode = InputListener.getInstance().getKeycode();
             if (keycode == KeyEvent.VK_ESCAPE) break;
-            if (keycode != 0x00) System.out.println("Keycode Entered: " + keycode);
-            keycode = 0x00;
+            if (keycode != -0x01) System.out.println("Keycode Entered: " + keycode);
         }
     }
 }

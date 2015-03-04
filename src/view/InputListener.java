@@ -8,8 +8,18 @@ import java.awt.event.KeyListener;
  */
 public class InputListener implements KeyListener
 {
-    private int keycode = 0x00;
+    private int keycode = -0x01;
     public int getKeycode() { return keycode; }
+
+    private static InputListener singleton = null;
+    public  static InputListener getInstance()
+    {
+        if (singleton == null)
+            singleton = new InputListener();
+        return singleton;
+    }
+
+    protected InputListener() {}
 
     /**
      * Invoked when a key has been typed.
@@ -19,10 +29,7 @@ public class InputListener implements KeyListener
      * @param e
      */
     @Override
-    public void keyTyped(KeyEvent e)
-    {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
 
     /**
@@ -49,6 +56,6 @@ public class InputListener implements KeyListener
     @Override
     public void keyReleased(KeyEvent e)
     {
-
+        keycode = -0x01;
     }
 }

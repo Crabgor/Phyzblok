@@ -33,27 +33,39 @@ public class ViewEntity
 
     /**
      *
-     * @return The X position of the entity, converted to the View coordinate system.
+     * @return  The X position of the entity, converted to the View coordinate system.
+     *
+     *          Note: The model shapes use half-width and half-height as the dimensions,
+     *          taking them to be a distance from the centre point of a body.
+     *          View elements use the top left corner, so the conversion uses half
+     *          the dimensions and adds/subtracts these values as necessary.
      *
      * Post-condition: The position is converted to the View coordinate system.
+     *                 The value may need to be rounded appropriately to clean up
+     *                 floating point errors.
      */
     public float getX()	// Only view/controller need this
     {
-        return physicsBody.getPosition().x;
-        // TODO: Change to View coordinate system
+        return physicsBody.getPosition().x - width/2;
     }
 
 
     /**
      *
-     * @return The Y position of the entity, converted to the View coordinate system.
+     * @return  The Y position of the entity, converted to the View coordinate system.
+     *
+     *          Note: The model shapes use half-width and half-height as the dimensions,
+     *          taking them to be a "radius" from the centre point of a body.
+     *          View elements use the top left corner, so the conversion uses half
+     *          the dimensions and adds/subtracts these values as necessary.
      *
      * Post-condition: The position is converted to the View coordinate system.
+     *                 The value may need to be rounded appropriately to clean up
+     *                 floating point errors.
      */
     public float getY() // Only view/controller need this
     {
-        return physicsBody.getPosition().y;
-        // TODO: Change to View coordinate system, round up if needed to prevent floating point error
+        return physicsBody.getPosition().y + height/2;
     }
 
 

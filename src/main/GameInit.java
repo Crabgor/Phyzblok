@@ -1,6 +1,6 @@
 package main;
 
-import controller.Controller;
+import controller.*;
 import enums.GameState;
 import levelGeneration.Level;
 import model.Model;
@@ -30,7 +30,7 @@ public class GameInit
         if (controller.loadLevel(level))
         {
             controller.setState(GameState.PLAY);
-            new controller.Game().play();
+            new Game().play();
         }
     }
 }

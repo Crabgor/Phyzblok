@@ -106,6 +106,13 @@ public class Controller
     }
 
 
+    private void notifyModelViewStateChange(GameState state)
+    {
+        model.changeState(state);
+        // TODO: view.changeState(state);
+    }
+
+
     /**
      *
      */

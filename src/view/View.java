@@ -132,6 +132,7 @@ public class View //extends JPanel
     {
         window = new GameWindow("PhyzBlok");
 
+<<<<<<< Updated upstream
         dynamicsPanel = new EntityPanel();
         dynamicsPanel.setSize(300, 50);
         dynamicsPanel.setVisible(true);
@@ -143,6 +144,11 @@ public class View //extends JPanel
         window.add(staticsPanel);
         //window.revalidate();
         //window.repaint();
+=======
+        GameWindow frame = new GameWindow("Game_Window");
+        //add(panel, BorderLayout.CENTER)
+    }
+>>>>>>> Stashed changes
 
 
     }

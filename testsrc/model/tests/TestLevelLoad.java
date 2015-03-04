@@ -21,7 +21,7 @@ public class TestLevelLoad
         Entity[] entities = {
                 new WallEntity(10.0f, 0.0f, 20.0f, 40.0f),
                 new WallEntity(40.0f, 0.0f, 20.0f, 40.0f),
-                new StdEntity(10.0f, Color.black, 5.0f, 10.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
+                new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), 5.0f, 10.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
         };
         float[] goal = { 100.0f, -100.0f };
         Level level = new Level(mainEntity, entities, goal, new Vec2(0.0f, -30.0f));
