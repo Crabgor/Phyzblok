@@ -32,9 +32,9 @@ public class PhyzRectangle extends Rectangle
     public PhyzRectangle(ViewEntity entity)
     {
         super((Rectangle) entity.getShape());
-        this.setSize(this.width*8, this.height*8);
+        this.setSize(entity.getWidth(), entity.getHeight());
         //this.setLocation(this.x, this.y);
-        this.setLocation((int) (this.getX()*4.9), (int) (-this.getY()*4.9));
+        this.setLocation((int) (entity.getX()), (int) (-entity.getY()));
 
         this.entity = entity;
     }
@@ -46,7 +46,7 @@ public class PhyzRectangle extends Rectangle
      */
     public void updatePosition()
     {
-        this.setLocation((int) entity.getX(), (int) entity.getY());
+        this.setLocation((int) (entity.getX()), (int) (entity.getY()));
         // TODO: ROTATION
     }
 }

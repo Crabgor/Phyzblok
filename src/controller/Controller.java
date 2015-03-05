@@ -13,8 +13,8 @@ public class Controller
 {
     // region Constants
     public final float STEP_PERIOD = 1 / 30.0f; // Time in seconds.
-    public final int VELOCITY_ITERATIONS_PER_STEP = 100;
-    public final int POSITION_ITERATIONS_PER_STEP = 10;
+    public final int VELOCITY_ITERATIONS_PER_STEP = 10;
+    public final int POSITION_ITERATIONS_PER_STEP = 300;
 
     public final GameState INITIAL_STATE = GameState.LOADING;
     // endregion

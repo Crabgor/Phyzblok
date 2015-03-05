@@ -8,16 +8,17 @@ public class WallEntity extends Entity
 {
     public WallEntity(float xModel, float yModel, float width, float height)
     {
-        this.mass = 1.0f;
+        this.mass = 100000000.0f;
         this.colour = Color.GRAY;
         this.gravityType = Gravity.NONE;
-        this.positionLocked = true;
-        this.shape = new Rectangle((int) xModel,(int) yModel, (int) width, (int) height); // TODO : FIX SHAPE PARAMS
+        this.positionLocked = false; //ToDo :make true
+        this.shape =  new Rectangle((int) xModel,(int) yModel, (int) width, (int) height); // TODO : FIX SHAPE PARAMS
         this.xModel = xModel;
         this.yModel = yModel;
         this.width = width;
         this.height = height;
         this.rotation = 0.0f;
+
 
         // TODO : FIX COEFFICIENTS
         this.frictionCoeff = 0.000f;

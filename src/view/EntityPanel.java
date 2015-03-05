@@ -11,7 +11,10 @@ import javax.swing.border.EmptyBorder;
 class EntityPanel extends JPanel{
 
 
-    public EntityPanel() {
+    private Color colour;
+
+    public EntityPanel(Color c) {
+        colour = c;
         rectangles = new ArrayList<PhyzRectangle>();
         //his.gameTwo = frame;
         ActionMap actionMap = getActionMap();
@@ -49,7 +52,7 @@ class EntityPanel extends JPanel{
         for (PhyzRectangle rect : rectangles)
         {
             //TODO: change color
-            g2.setColor(Color.BLUE);
+            g2.setColor(colour);
             g2.fillRect(rect.x, rect.y, rect.width, rect.height);
             g2.draw(rect);
         }
