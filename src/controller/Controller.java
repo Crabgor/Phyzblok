@@ -93,10 +93,9 @@ public class Controller
     /**
      *
      */
-    public void updateModel(double elapsed)
+    public void updateModel()
     {
-        for (; elapsed > 0; elapsed -= STEP_PERIOD * 1000)
-            model.stepWorld(STEP_PERIOD, VELOCITY_ITERATIONS_PER_STEP, POSITION_ITERATIONS_PER_STEP);
+        model.stepWorld(STEP_PERIOD, VELOCITY_ITERATIONS_PER_STEP, POSITION_ITERATIONS_PER_STEP);
     }
 
 
