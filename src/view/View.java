@@ -104,7 +104,7 @@ public class View implements IModelView
         PhyzRectangle mainShape = psf.MakeRectangle(mainEntity);
         List<PhyzRectangle> dynamics =  psf.MakeRectangles(dynamicEntities);
         List<PhyzRectangle> staticRects = psf.MakeRectangles(staticEntities);
-
+        //TODO: mainShape, dynamics, staticRects need to be made accessable
         createGUI();
 
         dynamicsPanel.AddShape(mainShape);
@@ -131,19 +131,19 @@ public class View implements IModelView
        // window.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
         dynamicsPanel = new EntityPanel();
-        dynamicsPanel.setSize(800, 800);
+        dynamicsPanel.setSize(1000, 1000);
         //dynamicsPanel.setVisible(true);
         //dynamicsPanel.setBackground(Color.PINK);
         dynamicsPanel.setOpaque(false);
         dynamicsPanel.setLocation(0,0);
         //pack();
-        staticsPanel = new EntityPanel();
-        staticsPanel.setSize(800, 800);
+        //staticsPanel = new EntityPanel();
+        //staticsPanel.setSize(1000, 1000);
 
         //staticsPanel.setVisible(true);
         //staticsPanel.setBackground(Color.BLUE);
         staticsPanel = new EntityPanel();
-        staticsPanel.setSize(800, 800);
+        staticsPanel.setSize(1000, 1000);
         staticsPanel.setOpaque(false);
         // TODO: Currently panels fill window, fix this if necessary
         window.getContentPane().add(staticsPanel);

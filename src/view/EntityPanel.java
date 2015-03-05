@@ -1,5 +1,7 @@
 package view;
 
+import entities.Entity;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -46,6 +48,8 @@ class EntityPanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         for (PhyzRectangle rect : rectangles)
         {
+            //TODO: change color
+            g2.setColor(Color.BLUE);
             g2.fillRect(rect.x, rect.y, rect.width, rect.height);
             g2.draw(rect);
         }

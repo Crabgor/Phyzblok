@@ -134,8 +134,8 @@ public class ViewEntity
         this.shape = entity.getShape();
         this.colour = entity.getColour();
         this.physicsBody = entity.getPhysicsBody();
-        this.width = (int) (entity.getWidth() + 0.900f);
-        this.height = (int) (entity.getHeight() + 0.900f);
+        this.width = (int) (entity.getWidth() + 0.500f);
+        this.height = (int) (entity.getHeight() + 0.500f);
         shapeConstructor();
     }
 
