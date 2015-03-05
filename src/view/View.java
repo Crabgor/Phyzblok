@@ -101,16 +101,16 @@ public class View implements IModelView
         List<ViewEntity> dynamicEntities = controller.getModel().getDynamicEntities();
         PhyzShapeFactory psf = new PhyzShapeFactory();
 
-        mainShape = psf.MakeRectangle(mainEntity);
-        dynamics =  psf.MakeRectangles(dynamicEntities);
+        PhyzRectangle mainShape = psf.MakeRectangle(mainEntity);
+        List<PhyzRectangle> dynamics =  psf.MakeRectangles(dynamicEntities);
         List<PhyzRectangle> staticRects = psf.MakeRectangles(staticEntities);
 
         createGUI();
 
-        staticsPanel.AddShape(mainShape);
-        staticsPanel.AddShapes(dynamics);
-        staticsPanel.revalidate();
-        staticsPanel.repaint();
+        dynamicsPanel.AddShape(mainShape);
+        dynamicsPanel.AddShapes(dynamics);
+        dynamicsPanel.revalidate();
+        dynamicsPanel.repaint();
 
         staticsPanel.AddShapes(staticRects);
         staticsPanel.revalidate();
