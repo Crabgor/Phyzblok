@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 public class View implements IModelView
 {
     // region Constants
-    public static final int MODEL_VIEW_RATIO = 8;
+    public static final int MODEL_VIEW_RATIO = 4;
     // endregion
 
     // region Fields
@@ -131,7 +131,7 @@ public class View implements IModelView
         window.setLayout(null);
        // window.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
-        dynamicsPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
+        dynamicsPanel = new EntityPanel();
         dynamicsPanel.setSize(1000, 1000);
         //dynamicsPanel.setVisible(true);
         //dynamicsPanel.setBackground(Color.PINK);
@@ -143,7 +143,7 @@ public class View implements IModelView
 
         //staticsPanel.setVisible(true);
         //staticsPanel.setBackground(Color.BLUE);
-        staticsPanel = new EntityPanel(Color.BLUE);
+        staticsPanel = new EntityPanel();
         staticsPanel.setSize(1000, 1000);
         staticsPanel.setOpaque(false);
         // TODO: Currently panels fill window, fix this if necessary

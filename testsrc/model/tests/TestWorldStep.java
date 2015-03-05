@@ -28,25 +28,23 @@ public class TestWorldStep
         //        new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), -99.0f, 97.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
         //};
 
-        MainEntity mainEntity = new MainEntity(5.0f, 9.0f, -150.0f, 10.0f, 10.0f);
+        MainEntity mainEntity = new MainEntity(5.0f, 10.0f, -20.0f, 10.0f, 10.0f);
         Entity[] entities = {
                 // new WallEntity(10.0f, 0.0f, 20.0f, 10.0f),
                 //new WallEntity(15.0f, -10.0f, 10.0f, 10.0f),
-                new WallEntity(1.5f, -100.0f, 3.0f, 200.0f),
-                new WallEntity(100.0f, -1.5f, 200.0f, 3.0f),
-                new WallEntity(201.5f, -100.0f, 3.0f, 200.0f),
-                new WallEntity(100.0f, -201.5f, 200.0f, 3.0f),
+                new WallEntity(0.0f, -0.0f, 3.0f, 200.0f),
+                new WallEntity(0.0f, -0.0f, 200.0f, 3.0f),
+                new WallEntity(200.0f, -0.0f, 3.0f, 200.0f),
+                new WallEntity(0.0f, -200.0f, 200.0f, 3.0f),
 
-                new WallEntity(150.0f, -51.5f, 100.0f, 3.0f),
-                new WallEntity(50.0f, -101.5f, 100.0f, 3.0f),
+                new WallEntity(100.0f, -50.0f, 100.0f, 3.0f),
+                new WallEntity(0.0f, -100.0f, 100.0f, 3.0f),
 
 
                 //new WallEntity(10.0f, 0.0f, 20.0f, 40.0f), //apparing
 
                 //new WallEntity(15.0f, -10.0f, 10.0f, 30.0f),
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(150, 2, 7, 7), 150.0f, -2.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f), // TODO: Rectangle is probably broken here
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(40, 40, 7, 7), 10.0f, -5.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f),
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(10, 100, 7, 7), 10.0f, -100.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f)
+                new StdEntity(100.0f, Color.GREEN, new Rectangle(5, 50, 2, 2), 5.0f, -50.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f) // TODO: Rectangle is probably broken here
         };
 
         float[] goal = { 100.0f, -100.0f };

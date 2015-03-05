@@ -25,9 +25,9 @@ public class Model implements IModelView
 	// Currently a 200x100 area
 	// Top-Left corner is 0,0
 	public final float 	TOP_HEIGHT = 0.000f,
-						BOTTOM_HEIGHT = -110.000f,
+						BOTTOM_HEIGHT = -100.000f,
 						LEFT_WIDTH = 0.000f,
-						RIGHT_WIDTH = 110.000f;
+						RIGHT_WIDTH = 200.000f;
 
 	// endregion
 
