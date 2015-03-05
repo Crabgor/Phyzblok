@@ -28,6 +28,7 @@ public class Controller
     private GameState state;
     private int gravMagnitude;
     private int gravX, gravY;
+    private int previousKeycode = -0x01;
     // endregion
 
 
@@ -121,7 +122,12 @@ public class Controller
      */
     public void getInputs()
     {
-        applyUserInput(view.pollInput());
+        int keycode = view.pollInput();
+        if (keycode != previousKeycode)
+        {
+            previousKeycode = keycode;
+            applyUserInput(previousKeycode);
+        }
     }
 
 

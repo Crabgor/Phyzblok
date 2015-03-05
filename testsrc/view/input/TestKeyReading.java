@@ -1,6 +1,8 @@
 package view.input;
 
+import enums.GameState;
 import org.junit.Test;
+import sample.InputTester;
 import view.InputListener;
 
 import java.awt.event.KeyEvent;
@@ -11,17 +13,23 @@ import java.util.Timer;
  */
 public class TestKeyReading
 {
-    // TODO: FIX TEST TestKeyReading
     @Test
     public void main()
     {
-        int keycode;
+        double previousTime = System.currentTimeMillis();
+
+        InputTester inputTester = new InputTester();
 
         while (true)
         {
-            keycode = InputListener.getInstance().getKeycode();
-            if (keycode == KeyEvent.VK_ESCAPE) break;
-            if (keycode != -0x01) System.out.println("Keycode Entered: " + keycode);
+            double currentTime = System.currentTimeMillis();
+            double elapsedTime = currentTime - previousTime;
+
+            if (elapsedTime <= 1000) continue;
+
+            previousTime = currentTime;
+
+            System.out.println(inputTester.getKeyCode());
         }
     }
 }
