@@ -34,15 +34,20 @@ public class Game
         {
             double currentTime = System.currentTimeMillis();
             double elapsedTime = currentTime - previousTime;
+
+            if (elapsedTime <= 1/60.0f * 1000) continue;
+
             previousTime = currentTime;
-            lagTime += elapsedTime;
+            //lagTime += elapsedTime;
 
             controller.getInputs();
 
-            for ( ; lagTime >= controller.STEP_PERIOD; lagTime -= controller.STEP_PERIOD)
+            //for ( ; lagTime >= controller.STEP_PERIOD; lagTime -= controller.STEP_PERIOD)
                 controller.updateModel();
 
             controller.renderView();
+
+
         }
     }
 }

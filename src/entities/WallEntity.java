@@ -20,7 +20,7 @@ public class WallEntity extends Entity
         this.rotation = 0.0f;
 
         // TODO : FIX COEFFICIENTS
-        this.frictionCoeff = 0.0f;
+        this.frictionCoeff = 0.000f;
         this.restitutionCoeff = 0.0f;
         this.gravityScale = 0.0f;
         this.linearDamping = 0.0f;

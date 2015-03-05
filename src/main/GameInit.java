@@ -47,7 +47,7 @@ public class GameInit
                 //new WallEntity(10.0f, 0.0f, 20.0f, 40.0f), //apparing
 
                 //new WallEntity(15.0f, -10.0f, 10.0f, 30.0f),
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(5, 50, 2, 2), 5.0f, -50.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f) // TODO: Rectangle is probably broken here
+                new StdEntity(100.0f, Color.GREEN, new Rectangle(5, 50, 2, 2), 5.0f, -50.0f, 2.0f, 2.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f) // TODO: Rectangle is probably broken here
         };
         float[] goal = { 100.0f, -100.0f };
         Level level = new Level(mainEntity, entities, goal, new Vec2(0.0f, -30.0f));
