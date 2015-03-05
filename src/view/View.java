@@ -67,9 +67,10 @@ public class View implements IModelView
      */
     public void update()
     {
-        mainShape.updatePosition();
-        for (PhyzRectangle pR : dynamics)
-            pR.updatePosition();
+        //mainShape.updatePosition();
+        //for (PhyzRectangle pR : dynamics)
+        //    pR.updatePosition();
+        dynamicsPanel.updateBodies();
         updateGraphics();
     }
 

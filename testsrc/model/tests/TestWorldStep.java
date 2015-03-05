@@ -21,15 +21,34 @@ public class TestWorldStep
 
         System.out.println("Testing level loading!");
 
-        MainEntity mainEntity = new MainEntity(10.0f, 30.0f, -10.0f, 2.0f, 2.0f);
+        //MainEntity mainEntity = new MainEntity(10.0f, 30.0f, -10.0f, 2.0f, 2.0f);
+        //Entity[] entities = {
+        //        new WallEntity(10.0f, 0.0f, 20.0f, 40.0f),
+        //        new WallEntity(40.0f, 0.0f, 20.0f, 40.0f),
+        //        new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), -99.0f, 97.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
+        //};
+
+        MainEntity mainEntity = new MainEntity(5.0f, 10.0f, -20.0f, 10.0f, 10.0f);
         Entity[] entities = {
-                new WallEntity(10.0f, 0.0f, 20.0f, 40.0f),
-                new WallEntity(40.0f, 0.0f, 20.0f, 40.0f),
-                new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), -99.0f, 97.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
+                // new WallEntity(10.0f, 0.0f, 20.0f, 10.0f),
+                //new WallEntity(15.0f, -10.0f, 10.0f, 10.0f),
+                new WallEntity(0.0f, -0.0f, 3.0f, 200.0f),
+                new WallEntity(0.0f, -0.0f, 200.0f, 3.0f),
+                new WallEntity(200.0f, -0.0f, 3.0f, 200.0f),
+                new WallEntity(0.0f, -200.0f, 200.0f, 3.0f),
+
+                new WallEntity(100.0f, -50.0f, 100.0f, 3.0f),
+                new WallEntity(0.0f, -100.0f, 100.0f, 3.0f),
+
+
+                //new WallEntity(10.0f, 0.0f, 20.0f, 40.0f), //apparing
+
+                //new WallEntity(15.0f, -10.0f, 10.0f, 30.0f),
+                new StdEntity(100.0f, Color.GREEN, new Rectangle(5, 50, 2, 2), 5.0f, -50.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f) // TODO: Rectangle is probably broken here
         };
 
         float[] goal = { 100.0f, -100.0f };
-        Level level = new Level(mainEntity, entities, goal, new Vec2(-30.0f, 30.0f));
+        Level level = new Level(mainEntity, entities, goal, new Vec2(0.0000f, -30.0000f));
 
         System.out.println("Level created!");
 
@@ -45,17 +64,13 @@ public class TestWorldStep
             System.out.println("Main Entity: X = " + model.getMainEntity().getX() + " ; Y = " + model.getMainEntity()
                     .getY() + "; Width = " + model.getMainEntity().getWidth() + "; Height = " + model.getMainEntity()
                                        .getHeight());
-            for (
-                    ViewEntity v : model.getDynamicEntities())
-            {
+            for (ViewEntity v : model.getDynamicEntities())
                 System.out.println("Dynamic Entity: X = " + v.getX() + " ; Y = " + v.getY() + "; Width = " + v
                         .getWidth() + "; Height = " + v.getHeight());
-            }
+
             for (ViewEntity v : model.getStaticEntities())
-            {
                 System.out.println("Static Entity: X = " + v.getX() + " ; Y = " + v.getY() + "; Width = " + v
                         .getWidth() + "; Height = " + v.getHeight());
-            }
 
         }
 

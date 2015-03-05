@@ -56,4 +56,10 @@ class EntityPanel extends JPanel{
     }
 
 
+
+    public void updateBodies()
+    {
+        for (PhyzRectangle pr : rectangles)
+            pr.updatePosition();
+    }
 }

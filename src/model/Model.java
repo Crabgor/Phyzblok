@@ -109,7 +109,8 @@ public class Model implements IModelView
 		if (w == null || w.getBodyCount() <= 0) return false;
 
 		// Get references to first body in list, which must be the Main Body
-		mainBody = w.getBodyList();
+		// mainBody = w.getBodyList();
+		// THE ABOVE BREAKS THINGS. IS IT EVEN NECESSARY?
 		world = w;
 		return true;
 	}

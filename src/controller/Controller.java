@@ -4,8 +4,6 @@ import enums.GameState;
 import levelGeneration.Level;
 import model.Model;
 import view.View;
-
-import javax.naming.ldap.Control;
 import java.awt.event.KeyEvent;
 
 /**
@@ -14,9 +12,9 @@ import java.awt.event.KeyEvent;
 public class Controller
 {
     // region Constants
-    public final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
-    public final int VELOCITY_ITERATIONS_PER_STEP = 1;
-    public final int POSITION_ITERATIONS_PER_STEP = 1;
+    public final float STEP_PERIOD = 1 / 30.0f; // Time in seconds.
+    public final int VELOCITY_ITERATIONS_PER_STEP = 100;
+    public final int POSITION_ITERATIONS_PER_STEP = 100;
 
     public final GameState INITIAL_STATE = GameState.LOADING;
     // endregion
