@@ -28,25 +28,15 @@ public class TestWorldStep
         //        new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), -99.0f, 97.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
         //};
 
-        MainEntity mainEntity = new MainEntity(5.0f, 9.0f, -150.0f, 10.0f, 10.0f);
+        MainEntity mainEntity = new MainEntity(5.0f, 5.0f, -20.0f, 8.0f, 8.0f);
         Entity[] entities = {
-                // new WallEntity(10.0f, 0.0f, 20.0f, 10.0f),
-                //new WallEntity(15.0f, -10.0f, 10.0f, 10.0f),
-                new WallEntity(1.5f, -100.0f, 3.0f, 200.0f),
-                new WallEntity(100.0f, -1.5f, 200.0f, 3.0f),
-                new WallEntity(201.5f, -100.0f, 3.0f, 200.0f),
-                new WallEntity(100.0f, -201.5f, 200.0f, 3.0f),
-
-                new WallEntity(150.0f, -51.5f, 100.0f, 3.0f),
-                new WallEntity(50.0f, -101.5f, 100.0f, 3.0f),
-
-
-                //new WallEntity(10.0f, 0.0f, 20.0f, 40.0f), //apparing
-
-                //new WallEntity(15.0f, -10.0f, 10.0f, 30.0f),
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(150, 2, 7, 7), 150.0f, -2.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f), // TODO: Rectangle is probably broken here
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(40, 40, 7, 7), 10.0f, -5.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f),
-                new StdEntity(100.0f, Color.GREEN, new Rectangle(10, 100, 7, 7), 10.0f, -100.0f, 7.0f, 7.0f, 0.0f, 0.000f, 0.5f, 1.0f, 0.0f, 0.0f)
+                new WallEntity(15.0f, -75.0f, 30.0f, 70.0f),
+                new WallEntity(95.0f, -55.0f, 30.0f, 30.0f),
+                new WallEntity(95.0f, -95f, 30.0f, 30.0f),
+                new WallEntity(100.0f, -40.0f, 2.0f, 10.0f),
+                new StdEntity(5f, new Color(200, 0, 255), new Rectangle(10, 5, 10, 3), 10.0f, -5.0f, 10.0f, 2.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f),
+                new StdEntity(25.0f, new Color(200, 0, 255), new Rectangle(27, 40, 30, 10), 27.0f, -40.0f, 30.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.000f, 0.0f, 0.0f),
+                new StdEntity(10.0f, new Color(200, 0, 255), new Rectangle(82, 25, 3, 3), 82.0f, -25.0f, 2.5f, 2.5f, 0.0f, 0.0f, 0.0f, 0.000f, 0.0f, 0.0f)
         };
 
         float[] goal = { 100.0f, -100.0f };
@@ -82,7 +72,7 @@ public class TestWorldStep
         for (int i = 0; i < 1000; i++)
         {
             model.stepWorld(1/60.0f, 1, 1);
-            System.out.println("Dynamic Entity: X = " + v.getX() + " ; Y = " + v.getY() + "; Width = " + v
+            System.out.println(i + ":   " + "Dynamic Entity: X = " + v.getX() + " ; Y = " + v.getY() + "; Width = " + v
                     .getWidth() + "; Height = " + v.getHeight());
         }
     }

@@ -60,6 +60,7 @@ public class View implements IModelView
      */
     public void update()
     {
+
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
         mainShapePanel.updateBodies();
@@ -72,6 +73,12 @@ public class View implements IModelView
      */
     private void updateGraphics()
     {
+        /*
+        if(!mainShape.isEmpty() && mainShape.getX() >200 && mainShape.getY() > 600)
+
+        if(!mainShape.isEmpty() && mainShape.getX() >200 && mainShape.getY() > 600) {
+            goalPanel.setBackground(Color.black);
+        }*/
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();
@@ -118,6 +125,11 @@ public class View implements IModelView
         mainShapePanel.AddShape(mainShape);
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
+        if(mainShape.getX() >100 && mainShape.getY() > 100)
+        {
+            goalPanel.setBackground(Color.black);
+        }
+
 
         goalPanel.revalidate();
         goalPanel.repaint();
