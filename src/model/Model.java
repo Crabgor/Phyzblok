@@ -137,7 +137,6 @@ public class Model implements IModelView
 	public void stepWorld(float timeStep, int velocityIt, int positionIt)
 	{
 		mainBody.applyForceToCenter(currentGravity);
-		// TODO: Apply forces to other player-gravity dynamic bodies if/when they exist
 		world.step(timeStep, velocityIt, positionIt);
 	}
 
