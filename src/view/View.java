@@ -4,20 +4,9 @@ import controller.Controller;
 import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
-import model.Model;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
-import java.util.Scanner;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 /**
  * Created by Cregnacht on 2015-03-03.
@@ -31,8 +20,12 @@ public class View implements IModelView
     // region Fields
     private /*static*/ GameWindow window;
     private Controller controller;
-    private /*static*/ EntityPanel staticsPanel;
-    private /*static*/ EntityPanel dynamicsPanel;
+    private /*static*/ EntityPanel  staticsPanel,
+                                    dynamicsPanel,
+                                    goalPanel,
+                                    backGroundPanel,
+                                    mainShapePanel;
+
 
     private PhyzRectangle mainShape;
     private List<PhyzRectangle> dynamics;
@@ -69,6 +62,7 @@ public class View implements IModelView
     {
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
+        mainShapePanel.updateBodies();
         updateGraphics();
     }
 
@@ -80,6 +74,8 @@ public class View implements IModelView
     {
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
+        mainShapePanel.revalidate();
+        mainShapePanel.repaint();
     }
 
 
@@ -106,7 +102,10 @@ public class View implements IModelView
         //TODO: mainShape, dynamics, staticRects need to be made accessable
         createGUI();
 
-        dynamicsPanel.AddShape(mainShape);
+
+
+
+        //dynamicsPanel.AddShape(mainShape);
         dynamicsPanel.AddShapes(dynamics);
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
@@ -114,6 +113,14 @@ public class View implements IModelView
         staticsPanel.AddShapes(staticRects);
         staticsPanel.revalidate();
         staticsPanel.repaint();
+
+
+        mainShapePanel.AddShape(mainShape);
+        mainShapePanel.revalidate();
+        mainShapePanel.repaint();
+
+        goalPanel.revalidate();
+        goalPanel.repaint();
 
         window.revalidate();
         window.repaint();
@@ -127,12 +134,30 @@ public class View implements IModelView
     {
         window = new GameWindow("PhyzBlok");
         window.setLayout(null);
+        //window.setBackground(Color.);
+
+        backGroundPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
+        backGroundPanel.setBackground(Color.DARK_GRAY);
+        backGroundPanel.setSize(1000, 1000);
+        backGroundPanel.setOpaque(true);
+        backGroundPanel.setLocation(0, 0);
+
+        goalPanel = new EntityPanel(Color.GREEN);
+        goalPanel.setBackground(new Color(51, 133, 19));
+        goalPanel.setSize(235, 200);
+        goalPanel.setOpaque(true);
+        goalPanel.setLocation(640, 550);
+
+        mainShapePanel = new EntityPanel(new Color(51, 164, 245));
+        mainShapePanel.setBackground(Color.PINK);
+        mainShapePanel.setSize(1000, 1000);
+        mainShapePanel.setOpaque(false);
+        mainShapePanel.setLocation(0, 0);
+        mainShapePanel.setVisible(true);
        // window.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
-        dynamicsPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
+        dynamicsPanel = new EntityPanel(new Color(166, 35, 35));
         dynamicsPanel.setSize(1000, 1000);
-        //dynamicsPanel.setVisible(true);
-        //dynamicsPanel.setBackground(Color.PINK);
         dynamicsPanel.setOpaque(false);
         dynamicsPanel.setLocation(0,0);
         //pack();
@@ -141,12 +166,19 @@ public class View implements IModelView
 
         //staticsPanel.setVisible(true);
         //staticsPanel.setBackground(Color.BLUE);
-        staticsPanel = new EntityPanel(Color.BLUE);
+        staticsPanel = new EntityPanel(new Color(245, 132, 51));
         staticsPanel.setSize(1000, 1000);
         staticsPanel.setOpaque(false);
+
+
         // TODO: Currently panels fill window, fix this if necessary
+        window.getContentPane().add(mainShapePanel);
         window.getContentPane().add(staticsPanel);
         window.getContentPane().add(dynamicsPanel);
+        window.getContentPane().add(goalPanel);
+        window.getContentPane().add(backGroundPanel);
+
+
 
 
         window.addKeyListener(inputListener);

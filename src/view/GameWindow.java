@@ -9,15 +9,16 @@ import javax.swing.border.EmptyBorder;
 
 public class GameWindow extends JFrame
 {
-    private static final int PREF_W = 1050;
-    private static final int PREF_H = PREF_W;
+    private static final int PREF_W = 910;
+    private static final int PREF_H = 940;
 
 
     public GameWindow(String name) {
         super(name);
-        setLocation(1200, 400); // TODO: Change if necessary
+        setLocation(900, 300); // TODO: Change if necessary
         setSize(PREF_W, PREF_H);
         setVisible(true);
+        setBackground(Color.black);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
