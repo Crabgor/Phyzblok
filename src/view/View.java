@@ -20,11 +20,11 @@ public class View implements IModelView
     // region Fields
     private GameWindow window;
     private Controller controller;
-    private /*static*/ EntityPanel  staticsPanel,
-                                    dynamicsPanel,
-                                    goalPanel,
-                                    backGroundPanel,
-                                    mainShapePanel;
+    private EntityPanel staticsPanel,
+                        dynamicsPanel,
+                        goalPanel,
+                        backGroundPanel,
+                        mainShapePanel;
 
 
     private PhyzRectangle mainShape;
@@ -156,13 +156,12 @@ public class View implements IModelView
         goalPanel.setLocation(640, 550);
 
         mainShapePanel = new EntityPanel(new Color(51, 164, 245));
-        mainShapePanel.setBackground(Color.PINK);
         mainShapePanel.setSize(1000, 1000);
         mainShapePanel.setOpaque(false);
         mainShapePanel.setLocation(0, 0);
         mainShapePanel.setVisible(true);
 
-        dynamicsPanel = new EntityPanel(new Color(166, 35, 35));
+        dynamicsPanel = new EntityPanel(new Color(0, 35, 35));
         dynamicsPanel.setSize(1000, 1000);
         dynamicsPanel.setOpaque(false);
         dynamicsPanel.setLocation(0,0);

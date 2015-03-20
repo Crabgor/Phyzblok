@@ -87,7 +87,7 @@ public class LevelParser
                                      angularDamping, linearDamping));
         }
 
-        return new Level(mainEntity, entities.toArray(new Entity[entities.size()]), goalLocation, gravityVector);
+        return new Level(mainEntity, entities.toArray(new Entity[entities.size()]), goalLocation, gravityVector, 10); // TODO: Remove hard-coded limit
     }
 
 

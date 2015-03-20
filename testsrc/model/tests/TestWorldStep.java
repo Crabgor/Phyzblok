@@ -40,7 +40,7 @@ public class TestWorldStep
         };
 
         float[] goal = { 100.0f, -100.0f };
-        Level level = new Level(mainEntity, entities, goal, new Vec2(0.0000f, -30.0000f));
+        Level level = new Level(mainEntity, entities, goal, new Vec2(0.0000f, -30.0000f), 10);
 
         System.out.println("Level created!");
 

@@ -24,7 +24,7 @@ public class TestLevelLoad
                 new StdEntity(100.0f, Color.black, new Rectangle(5, 10, 2, 2), 5.0f, 10.0f, 2.0f, 2.0f, 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f)
         };
         float[] goal = { 100.0f, -100.0f };
-        Level level = new Level(mainEntity, entities, goal, new Vec2(0.0f, -30.0f));
+        Level level = new Level(mainEntity, entities, goal, new Vec2(0.0f, -30.0f), 10);
 
         System.out.println("Level created!");
 

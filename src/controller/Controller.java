@@ -30,6 +30,7 @@ public class Controller
     private int gravX, gravY;
     private int previousKeycode = -0x01;
     private int keyCount = 0;
+    private int maxKeyCount = 0;
     // endregion
 
 
@@ -57,8 +58,6 @@ public class Controller
 
         // TODO: How do we start a game loop when the state changes?
     }
-
-    public void
     // endregion
 
 
@@ -87,7 +86,10 @@ public class Controller
     {
         if (model.buildLevel(level))
             if (view.buildLevelFromModel())
+            {
+                maxKeyCount = level.getMaxKeyCount();
                 return true;
+            }
         return false;
     }
 
@@ -125,13 +127,17 @@ public class Controller
      */
     public void getInputs()
     {
+        if (keyCount >= maxKeyCount) return;
         int keycode = view.pollInput();
         if (keycode != previousKeycode)
         {
             previousKeycode = keycode;
             applyUserInput(previousKeycode);
             if (keycode != -0x01)
+            {
                 keyCount++;
+                // TODO: Send keyCount to view
+            }
         }
     }
 

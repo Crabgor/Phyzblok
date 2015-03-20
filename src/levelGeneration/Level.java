@@ -10,6 +10,7 @@ public class Level
 	private Entity[] entities;
 	private float[] goalLocation;
 	private Vec2 gravityVector;
+	private int maxKeyCount;
 	// endregion
 
 	// region Getters
@@ -35,6 +36,12 @@ public class Level
 	{
 		return gravityVector;
 	}
+
+
+	public int getMaxKeyCount()
+	{
+		return maxKeyCount;
+	}
 	// endregion
 
 	/**
@@ -43,11 +50,12 @@ public class Level
 	 * @param entities
 	 * @param goalLocation
 	 */
-	public Level(MainEntity mainEntity, Entity[] entities, float[] goalLocation, Vec2 gravityVector)
+	public Level(MainEntity mainEntity, Entity[] entities, float[] goalLocation, Vec2 gravityVector, int maxKeyCount)
 	{
 		this.mainEntity = mainEntity;
 		this.entities = entities;
 		this.goalLocation = goalLocation;
 		this.gravityVector = gravityVector;
+		this.maxKeyCount = maxKeyCount;
 	}
 }
