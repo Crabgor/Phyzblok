@@ -51,10 +51,16 @@ class EntityPanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         for (PhyzRectangle rect : rectangles)
         {
-            //TODO: change color
-            g2.setColor(colour);
-            g2.fillRect(rect.x, rect.y, rect.width, rect.height);
-            g2.draw(rect);
+            int[]  xPnts = {rect.x, rect.x, rect.x + rect.width, rect.x + rect.width},
+                   yPnts = {rect.y, rect.y + rect.height, rect.y + rect.height, rect.y};
+
+            Polygon p = new Polygon(xPnts, yPnts, 4);
+
+            g2.setColor(rect.getEntity().getColour());
+            //g2.fillRect(rect.x, rect.y, rect.width, rect.height);
+            //g2.draw(rect);
+            g2.fill(p);
+            g2.draw(p);
         }
     }
 

@@ -34,9 +34,9 @@ public class TestWorldStep
                 new WallEntity(95.0f, -55.0f, 30.0f, 30.0f),
                 new WallEntity(95.0f, -95f, 30.0f, 30.0f),
                 new WallEntity(100.0f, -40.0f, 2.0f, 10.0f),
-                new StdEntity(5f, new Color(200, 0, 255), new Rectangle(10, 5, 10, 3), 10.0f, -5.0f, 10.0f, 2.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f),
-                new StdEntity(25.0f, new Color(200, 0, 255), new Rectangle(27, 40, 30, 10), 27.0f, -40.0f, 30.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.000f, 0.0f, 0.0f),
-                new StdEntity(10.0f, new Color(200, 0, 255), new Rectangle(82, 25, 3, 3), 82.0f, -25.0f, 2.5f, 2.5f, 0.0f, 0.0f, 0.0f, 0.000f, 0.0f, 0.0f)
+                //new StdEntity(5f, new Color(200, 0, 255), new Rectangle(10, 5, 10, 3), 10.0f, -5.0f, 10.0f, 2.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f),
+                new StdEntity(25.0f, new Color(200, 0, 255), new Rectangle(27, 40, 15, 10), 27.0f, -40.0f, 15.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.000f, 0.0f, 0.0f),
+                new StdEntity(10.0f, new Color(200, 0, 255), new Rectangle(82, 25, 5, 5), 82.0f, -25.0f, 5.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.000f, 0.0f, 0.0f)
         };
 
         float[] goal = { 100.0f, -100.0f };
@@ -51,7 +51,7 @@ public class TestWorldStep
 
         for (int i = 0; i < iterationCount; i++)
         {
-            model.stepWorld(1/60.0f, 1, 1);
+            model.stepWorld(1/30.0f, 1, 1);
 
             System.out.println("Main Entity: X = " + model.getMainEntity().getX() + " ; Y = " + model.getMainEntity()
                     .getY() + "; Width = " + model.getMainEntity().getWidth() + "; Height = " + model.getMainEntity()
@@ -71,7 +71,7 @@ public class TestWorldStep
 
         for (int i = 0; i < 1000; i++)
         {
-            model.stepWorld(1/60.0f, 1, 1);
+            model.stepWorld(1/30.0f, 1, 1);
             System.out.println(i + ":   " + "Dynamic Entity: X = " + v.getX() + " ; Y = " + v.getY() + "; Width = " + v
                     .getWidth() + "; Height = " + v.getHeight());
         }

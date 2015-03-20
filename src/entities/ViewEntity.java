@@ -134,8 +134,8 @@ public class ViewEntity
         this.shape = entity.getShape();
         this.colour = entity.getColour();
         this.physicsBody = entity.getPhysicsBody();
-        this.width = (int) (entity.getWidth() + 0.500f);
-        this.height = (int) (entity.getHeight() + 0.500f);
+        this.width = (int) (entity.getWidth());
+        this.height = (int) (entity.getHeight());
         shapeConstructor();
     }
 
@@ -149,7 +149,7 @@ public class ViewEntity
         if (s == new Rectangle().toString())
         {
             Rectangle tempShape = (Rectangle) this.shape;
-            tempShape.setLocation((int) getX(), (int) getY());
+            tempShape.setLocation((int) (getX()), (int) (getY()));
             tempShape.setSize(getWidth(), getHeight());
             this.shape = tempShape;
            // System.out.println(physicsBody.getPosition().x - width/2);

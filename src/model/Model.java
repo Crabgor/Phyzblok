@@ -15,7 +15,7 @@ import java.util.List;
 public class Model implements IModelView
 {
 	// region Constants
-	private final float PLAYER_GRAVITY_ACCELERATION_SCALE = 5.0f;
+	private final float PLAYER_GRAVITY_ACCELERATION_SCALE = 1.0f;
 	private final float DEFAULT_DENSITY = 1.0f;
 
 	private final float WALL_FRICTION = 0.5f;

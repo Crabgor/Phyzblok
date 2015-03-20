@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 public class Controller
 {
     // region Constants
-    public final float STEP_PERIOD = 1 / 60.0f; // Time in seconds.
+    public final float STEP_PERIOD = 1 / 30.0f; // Time in seconds.
     public final int VELOCITY_ITERATIONS_PER_STEP = 100;
     public final int POSITION_ITERATIONS_PER_STEP = 300;
 
@@ -29,6 +29,7 @@ public class Controller
     private int gravMagnitude;
     private int gravX, gravY;
     private int previousKeycode = -0x01;
+    private int keyCount = 0;
     // endregion
 
 
@@ -56,6 +57,8 @@ public class Controller
 
         // TODO: How do we start a game loop when the state changes?
     }
+
+    public void
     // endregion
 
 
@@ -127,6 +130,8 @@ public class Controller
         {
             previousKeycode = keycode;
             applyUserInput(previousKeycode);
+            if (keycode != -0x01)
+                keyCount++;
         }
     }
 

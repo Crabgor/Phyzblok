@@ -28,26 +28,19 @@ public class Game
     public void play()
     {
         double previousTime = System.currentTimeMillis(); // TODO: Ensure this doesn't cause any problems.
-        double lagTime = 0.0;
 
         while (controller.getState() == GameState.PLAY)
         {
             double currentTime = System.currentTimeMillis();
             double elapsedTime = currentTime - previousTime;
 
-            if (elapsedTime <= 1/60.0f * 1000) continue;
+            if (elapsedTime <= controller.STEP_PERIOD * 1000) continue;
 
             previousTime = currentTime;
-            //lagTime += elapsedTime;
 
             controller.getInputs();
-
-            //for ( ; lagTime >= controller.STEP_PERIOD; lagTime -= controller.STEP_PERIOD)
-                controller.updateModel();
-
+            controller.updateModel();
             controller.renderView();
-
-
         }
     }
 }

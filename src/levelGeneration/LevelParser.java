@@ -2,10 +2,14 @@ package levelGeneration;
 
 import entities.Entity;
 import entities.MainEntity;
+import entities.StdEntity;
+import entities.WallEntity;
+import org.jbox2d.common.Vec2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -51,13 +55,14 @@ public class LevelParser
               gravityVectorX = Float.parseFloat(worldInfo.getString("gravityVectorX")),
               gravityVectorY = Float.parseFloat(worldInfo.getString("gravityVectorY"));
 
-        Entity mainEntity;
+        float[] goalLocation = { goalLocation_x, goalLocation_y };
+        Vec2 gravityVector = new Vec2(gravityVectorX, gravityVectorY);
+
+        MainEntity mainEntity = new MainEntity(0,0,0,0,0);
         List<Entity> entities = new ArrayList<Entity>();
         JSONArray jsonEntities = jsonObject.getJSONArray("Entities");
 
-        // CREATE MAIN ENTITY
-
-        for (int i = 1; i < jsonEntities.length(); i++)
+        for (int i = 0; i < jsonEntities.length(); i++)
         {
             JSONObject jsonEntity = jsonEntities.getJSONObject(i);
             String  mass = jsonEntity.getString("mass"),
@@ -75,13 +80,14 @@ public class LevelParser
                     gravityScale = jsonEntity.getString("gravityScale"),
                     angularDamping = jsonEntity.getString("angularDamping"),
                     linearDamping = jsonEntity.getString("linearDamping");
-            entities.add(buildEntity(mass, colour, gravityType, positionLocked, shape,
+            if (i == 0) mainEntity = buildMainEntity(mass, xModel, yModel, width, height);
+            else entities.add(buildEntity(mass, colour, gravityType, positionLocked, shape,
                                      xModel, yModel, width, height, rotation,
                                      frictionCoeff, restitutionCoeff, gravityScale,
                                      angularDamping, linearDamping));
         }
 
-        return null; // TODO : FINISH IMPLEMENTATION
+        return new Level(mainEntity, entities.toArray(new Entity[entities.size()]), goalLocation, gravityVector);
     }
 
 
@@ -112,10 +118,9 @@ public class LevelParser
      *
      * @return
      */
-    private MainEntity buildMainEntity()
+    private MainEntity buildMainEntity(String mass, String x, String y, String width, String height)
     {
-//      TODO: FINISH IMPLEMENTATION OF buildMainEntity;
-        throw new NotImplementedException();
+        return new MainEntity(s_float(mass), s_float(x), s_float(y), s_float(width), s_float(height));
     }
 
 
@@ -128,7 +133,38 @@ public class LevelParser
                                String frictionCoeff, String restitutionCoeff, String gravityScale,
                                String angularDamping, String linearDamping)
     {
-        // TODO: FINISH IMPLEMENTATION OF buildEntity;
-        throw new NotImplementedException();
+        try
+        {
+            if (Boolean.parseBoolean(positionLocked))
+                return new WallEntity(s_float(xModel), s_float(yModel), s_float(width), s_float(height));
+
+            else
+                return new StdEntity(s_float(mass), Color.BLACK, new Rectangle(), s_float(xModel), s_float(yModel),         // TODO: Fix colour and shape params
+                                     s_float(width), s_float(height), s_float(rotation), s_float(frictionCoeff),
+                                     s_float(restitutionCoeff), s_float(gravityScale),
+                                     s_float(linearDamping), s_float(angularDamping));
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+
+    /**
+     *
+     * @param s
+     * @return Returns a float value parsed from the string parameter
+     */
+    private float s_float(String s)
+    {
+        try
+        {
+            return Float.parseFloat(s);
+        }
+        catch (Exception e)
+        {
+            return 0.00f;
+        }
     }
 }

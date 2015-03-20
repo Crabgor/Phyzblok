@@ -5,7 +5,7 @@
     "goalLocation_y" : "0.0f",
     "gravityVectorX" : "0.0f",
     "gravityVectorY" : "0.0f"
-  }
+  },
 
   "Entities" :
           [

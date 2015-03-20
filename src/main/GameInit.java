@@ -63,8 +63,8 @@ public class GameInit
                 new WallEntity(95.0f, -95f, 30.0f, 30.0f),
                 new WallEntity(100.0f, -40.0f, 2.0f, 10.0f),
                 //new StdEntity(5f, new Color(200, 0, 255), new Rectangle(10, 5, 10, 3), 10.0f, -5.0f, 10.0f, 2.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f),
-                new StdEntity(25.0f, new Color(200, 0, 255), new Rectangle(27, 40, 15, 10), 27.0f, -40.0f, 15.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.000f, 0.0f, 0.0f),
-                new StdEntity(10.0f, new Color(200, 0, 255), new Rectangle(82, 25, 5, 5), 82.0f, -25.0f, 5.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.000f, 0.0f, 0.0f)
+                new StdEntity(10.0f, new Color(200, 0, 255), new Rectangle(27, 40, 15, 10), 27.0f, -40.0f, 15.0f, 10.0f, 0.0f, 0.0f, 0.0f, 1.000f, 0.0f, 0.0f),
+                new StdEntity(10.0f, new Color(240, 240, 0), new Rectangle(82, 25, 5, 5), 82.0f, -25.0f, 5.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.000f, 0.0f, 0.0f)
         };
         // endregion
 

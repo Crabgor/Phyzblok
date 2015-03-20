@@ -18,7 +18,7 @@ public class View implements IModelView
     // endregion
 
     // region Fields
-    private /*static*/ GameWindow window;
+    private GameWindow window;
     private Controller controller;
     private /*static*/ EntityPanel  staticsPanel,
                                     dynamicsPanel,
@@ -60,7 +60,6 @@ public class View implements IModelView
      */
     public void update()
     {
-
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
         mainShapePanel.updateBodies();
@@ -73,12 +72,6 @@ public class View implements IModelView
      */
     private void updateGraphics()
     {
-        /*
-        if(!mainShape.isEmpty() && mainShape.getX() >200 && mainShape.getY() > 600)
-
-        if(!mainShape.isEmpty() && mainShape.getX() >200 && mainShape.getY() > 600) {
-            goalPanel.setBackground(Color.black);
-        }*/
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();
@@ -96,6 +89,10 @@ public class View implements IModelView
     }
 
 
+    /**
+     *
+     * @return
+     */
     public boolean buildLevelFromModel()
     {
         ViewEntity mainEntity = controller.getModel().getMainEntity();
@@ -106,13 +103,9 @@ public class View implements IModelView
         PhyzRectangle mainShape = psf.MakeRectangle(mainEntity);
         List<PhyzRectangle> dynamics =  psf.MakeRectangles(dynamicEntities);
         List<PhyzRectangle> staticRects = psf.MakeRectangles(staticEntities);
-        //TODO: mainShape, dynamics, staticRects need to be made accessable
+        //TODO: mainShape, dynamics, staticRects need to be made accessible
         createGUI();
 
-
-
-
-        //dynamicsPanel.AddShape(mainShape);
         dynamicsPanel.AddShapes(dynamics);
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
@@ -142,11 +135,13 @@ public class View implements IModelView
     }
 
 
-    private /*static*/ void createGUI()
+    /**
+     *
+     */
+    private void createGUI()
     {
         window = new GameWindow("PhyzBlok");
         window.setLayout(null);
-        //window.setBackground(Color.);
 
         backGroundPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
         backGroundPanel.setBackground(Color.DARK_GRAY);
@@ -166,22 +161,15 @@ public class View implements IModelView
         mainShapePanel.setOpaque(false);
         mainShapePanel.setLocation(0, 0);
         mainShapePanel.setVisible(true);
-       // window.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
         dynamicsPanel = new EntityPanel(new Color(166, 35, 35));
         dynamicsPanel.setSize(1000, 1000);
         dynamicsPanel.setOpaque(false);
         dynamicsPanel.setLocation(0,0);
-        //pack();
-        //staticsPanel = new EntityPanel();
-        //staticsPanel.setSize(1000, 1000);
 
-        //staticsPanel.setVisible(true);
-        //staticsPanel.setBackground(Color.BLUE);
         staticsPanel = new EntityPanel(new Color(245, 132, 51));
         staticsPanel.setSize(1000, 1000);
         staticsPanel.setOpaque(false);
-
 
         // TODO: Currently panels fill window, fix this if necessary
         window.getContentPane().add(mainShapePanel);
@@ -190,13 +178,14 @@ public class View implements IModelView
         window.getContentPane().add(goalPanel);
         window.getContentPane().add(backGroundPanel);
 
-
-
-
         window.addKeyListener(inputListener);
     }
 
 
+    /**
+     *
+     * @param state
+     */
     @Override
     public void changeState(GameState state)
     {
@@ -220,13 +209,4 @@ public class View implements IModelView
                 break;
         }
     }
-
-/*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createGUI();
-            }
-        });
-    }*/
 }
