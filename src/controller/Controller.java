@@ -85,11 +85,11 @@ public class Controller
     public boolean loadLevel(Level level)
     {
         if (model.buildLevel(level))
+        {
+            maxKeyCount = level.getMaxKeyCount();
             if (view.buildLevelFromModel())
-            {
-                maxKeyCount = level.getMaxKeyCount();
                 return true;
-            }
+        }
         return false;
     }
 
@@ -128,19 +128,28 @@ public class Controller
     public void getInputs()
     {
         if (keyCount >= maxKeyCount) return;
+
         int keycode = view.pollInput();
         if (keycode != previousKeycode)
         {
             previousKeycode = keycode;
             applyUserInput(previousKeycode);
-            if (keycode != -0x01)
+            if (keycode <= 40 && keycode >= 37) //arrow key key codes
             {
                 keyCount++;
-                // TODO: Send keyCount to view
+                view.updateNumText(keyCount, maxKeyCount);
+
             }
         }
     }
 
+    /**
+     *
+     */
+    public int getMaxKeyCount()
+    {
+        return maxKeyCount;
+    }
 
     /**
      *

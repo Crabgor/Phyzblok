@@ -19,11 +19,13 @@ public class MainEntity extends Entity
 		this.height = height;
 
 		// TODO : FIX COEFFICIENTS. ALSO, ROTATION????? WAT.
+
 		this.rotation = 0.0f;
 		this.frictionCoeff = 0.0f;
 		this.restitutionCoeff = 0.0f;
 		this.gravityScale = 0.0f;
 		this.linearDamping = 0.0f;
 		this.angularDamping = 0.0f;
+
 	}
 }

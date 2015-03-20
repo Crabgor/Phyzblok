@@ -5,6 +5,7 @@ import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class View implements IModelView
                         goalPanel,
                         backGroundPanel,
                         mainShapePanel;
+    private JLabel clickCountNumber,
+                    gameInstructions;
 
 
     private PhyzRectangle mainShape;
@@ -63,9 +66,23 @@ public class View implements IModelView
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
         mainShapePanel.updateBodies();
+
         updateGraphics();
     }
 
+    /**
+     *updates the displayed number
+     */
+    public void updateNumText(int numUsed, int numTotal)
+    {
+        int numLeft = numTotal-numUsed;
+        clickCountNumber.setText("you have " + String.valueOf(numLeft) + " clicks left");
+        gameInstructions.setText(
+                "Main ro ="+ String.valueOf(controller.getModel().getMainEntity().getAngle()) +
+                "  Black ro="+ String.valueOf(controller.getModel().getDynamicEntities().get(0).getAngle()) +
+                " Yel ro=" + String.valueOf(controller.getModel().getDynamicEntities().get(1).getAngle())
+        );
+    }
 
     /**
      *
@@ -76,6 +93,9 @@ public class View implements IModelView
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
+        if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 ){
+            goalPanel.setBackground(Color.PINK);
+        }
     }
 
 
@@ -107,6 +127,8 @@ public class View implements IModelView
         createGUI();
 
         dynamicsPanel.AddShapes(dynamics);
+        dynamicsPanel.add(gameInstructions);
+        dynamicsPanel.add(clickCountNumber);
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
 
@@ -140,6 +162,15 @@ public class View implements IModelView
      */
     private void createGUI()
     {
+        gameInstructions = new JLabel("In this Game you must use the arrow keys to change how gravity acts on the main shape");
+        gameInstructions.setFont(new Font("Verdana",1,15));
+        gameInstructions.setForeground(Color.PINK);
+
+        clickCountNumber = new JLabel("you have "+ String.valueOf(controller.getMaxKeyCount()) + " clicks.  Good Luck");
+        clickCountNumber.setFont(new Font("Verdana",1,20));
+        clickCountNumber.setForeground(Color.PINK);
+        clickCountNumber.setLocation(20,20);
+
         window = new GameWindow("PhyzBlok");
         window.setLayout(null);
 
@@ -169,6 +200,7 @@ public class View implements IModelView
         staticsPanel = new EntityPanel(new Color(245, 132, 51));
         staticsPanel.setSize(1000, 1000);
         staticsPanel.setOpaque(false);
+
 
         // TODO: Currently panels fill window, fix this if necessary
         window.getContentPane().add(mainShapePanel);

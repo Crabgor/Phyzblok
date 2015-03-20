@@ -229,6 +229,7 @@ public class Model implements IModelView
 			bodyDef.gravityScale = entity.getGravityScale();
 			bodyDef.angularDamping = entity.getAngularDamping();
 			bodyDef.linearDamping = entity.getLinearDamping();
+			bodyDef.fixedRotation = true;
 
 			return bodyDef;
 		}

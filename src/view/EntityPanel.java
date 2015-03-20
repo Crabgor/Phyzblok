@@ -61,6 +61,7 @@ class EntityPanel extends JPanel{
             //g2.draw(rect);
             g2.fill(p);
             g2.draw(p);
+
         }
     }
 
@@ -71,4 +72,9 @@ class EntityPanel extends JPanel{
         for (PhyzRectangle pr : rectangles)
             pr.updatePosition();
     }
+    public void updateText()
+    {
+
+    }
+
 }
