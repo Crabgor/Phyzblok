@@ -8,19 +8,31 @@ import enums.GameState;
 public class Game
 {
     private Controller controller;
+    private boolean running;
 
     private static Game singleton;
-    public  static Game getInstance(Controller c)
+
+
+    public static synchronized Game getInstance()
     {
         if (singleton == null)
-            singleton = new Game(c);
+            singleton = new Game(Controller.getInstance());
         return singleton;
     }
+
 
     protected Game(Controller controller)
     {
         this.controller = controller;
+        this.running = false;
     }
+
+
+    public boolean isRunning()
+    {
+        return running;
+    }
+
 
     /**
      *
@@ -28,6 +40,7 @@ public class Game
     public void play()
     {
         double previousTime = System.currentTimeMillis(); // TODO: Ensure this doesn't cause any problems.
+        running = true;
 
         while (controller.getState() == GameState.PLAY)
         {
@@ -42,5 +55,7 @@ public class Game
             controller.updateModel();
             controller.renderView();
         }
+
+        running = false;
     }
 }

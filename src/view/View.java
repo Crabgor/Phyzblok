@@ -4,6 +4,8 @@ import controller.Controller;
 import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
+import view.controls.MainMenuPanel;
+import view.controls.PausePanel;
 
 import java.awt.*;
 import java.util.List;
@@ -25,6 +27,8 @@ public class View implements IModelView
                         goalPanel,
                         backGroundPanel,
                         mainShapePanel;
+    private MainMenuPanel mainMenuPanel;
+    private PausePanel pausePanel;
 
 
     private PhyzRectangle mainShape;
@@ -47,11 +51,18 @@ public class View implements IModelView
     }
     // endregion
 
-    public View() {}
-
-    public View(Controller controller)
+    public View(Controller c)
     {
-        this.controller = controller;
+        controller = c;
+        window = new GameWindow("PhyzBlok");
+        window.setLayout(null);
+
+        mainMenuPanel = new MainMenuPanel();
+        mainMenuPanel.setVisible(true);
+
+        window.add(mainMenuPanel);
+        window.revalidate();
+        window.repaint();
     }
 
 
@@ -130,7 +141,6 @@ public class View implements IModelView
         window.revalidate();
         window.repaint();
 
-
         return true;    // TODO: Ensure successful method completion
     }
 
@@ -140,9 +150,6 @@ public class View implements IModelView
      */
     private void createGUI()
     {
-        window = new GameWindow("PhyzBlok");
-        window.setLayout(null);
-
         backGroundPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
         backGroundPanel.setBackground(Color.DARK_GRAY);
         backGroundPanel.setSize(1000, 1000);
@@ -171,6 +178,7 @@ public class View implements IModelView
         staticsPanel.setOpaque(false);
 
         // TODO: Currently panels fill window, fix this if necessary
+        // TODO: Panels and inputListener may be added multiple times per game instance over the course of play, fix this
         window.getContentPane().add(mainShapePanel);
         window.getContentPane().add(staticsPanel);
         window.getContentPane().add(dynamicsPanel);
@@ -195,17 +203,24 @@ public class View implements IModelView
             case LEVEL_SELECT:
                 break;
             case LOADING:
+                mainMenuPanel.setVisible(false);
                 break;
             case MAIN_MENU:
+                mainMenuPanel.setVisible(true);
                 break;
             case PAUSE:
                 break;
             case PLAY:
+                mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);
                 staticsPanel.setVisible(true);
+                mainMenuPanel.setVisible(false);
                 break;
             default:
                 break;
         }
+
+        window.repaint();
+        window.revalidate();
     }
 }
