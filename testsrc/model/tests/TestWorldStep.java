@@ -16,7 +16,7 @@ public class TestWorldStep
     @Test
     public void main()
     {
-        Model model = new Model();
+        Model model = new Model(null);
         int iterationCount = 10;
 
         System.out.println("Testing level loading!");

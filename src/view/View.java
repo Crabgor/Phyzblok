@@ -4,6 +4,8 @@ import controller.Controller;
 import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
+import view.controls.MainMenuPanel;
+import view.controls.PausePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +28,11 @@ public class View implements IModelView
                         goalPanel,
                         backGroundPanel,
                         mainShapePanel;
+
     private JLabel clickCountNumber,
                     gameInstructions;
+    private MainMenuPanel mainMenuPanel;
+    private PausePanel pausePanel;
 
 
     private PhyzRectangle mainShape;
@@ -50,11 +55,19 @@ public class View implements IModelView
     }
     // endregion
 
-    public View() {}
-
-    public View(Controller controller)
+    public View(Controller c)
     {
-        this.controller = controller;
+        controller = c;
+        window = new GameWindow("PhyzBlok");
+        window.setLayout(null);
+
+        mainMenuPanel = new MainMenuPanel();
+        mainMenuPanel.setVisible(true);
+        mainMenuPanel.setBackground(Color.blue);
+
+        window.add(mainMenuPanel);
+        window.revalidate();
+        window.repaint();
     }
 
 
@@ -152,7 +165,6 @@ public class View implements IModelView
         window.revalidate();
         window.repaint();
 
-
         return true;    // TODO: Ensure successful method completion
     }
 
@@ -162,6 +174,7 @@ public class View implements IModelView
      */
     private void createGUI()
     {
+
         gameInstructions = new JLabel("In this Game you must use the arrow keys to change how gravity acts on the main shape");
         gameInstructions.setFont(new Font("Verdana",1,15));
         gameInstructions.setForeground(Color.PINK);
@@ -171,8 +184,6 @@ public class View implements IModelView
         clickCountNumber.setForeground(Color.PINK);
         clickCountNumber.setLocation(20,20);
 
-        window = new GameWindow("PhyzBlok");
-        window.setLayout(null);
 
         backGroundPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
         backGroundPanel.setBackground(Color.DARK_GRAY);
@@ -203,6 +214,7 @@ public class View implements IModelView
 
 
         // TODO: Currently panels fill window, fix this if necessary
+        // TODO: Panels and inputListener may be added multiple times per game instance over the course of play, fix this
         window.getContentPane().add(mainShapePanel);
         window.getContentPane().add(staticsPanel);
         window.getContentPane().add(dynamicsPanel);
@@ -227,17 +239,24 @@ public class View implements IModelView
             case LEVEL_SELECT:
                 break;
             case LOADING:
+                mainMenuPanel.setVisible(false);
                 break;
             case MAIN_MENU:
+                mainMenuPanel.setVisible(true);
                 break;
             case PAUSE:
                 break;
             case PLAY:
+                mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);
                 staticsPanel.setVisible(true);
+                mainMenuPanel.setVisible(false);
                 break;
             default:
                 break;
         }
+
+        window.repaint();
+        window.revalidate();
     }
 }

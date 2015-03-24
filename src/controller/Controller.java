@@ -2,6 +2,7 @@ package controller;
 
 import enums.GameState;
 import levelGeneration.Level;
+import main.GameInit;
 import model.Model;
 import view.View;
 import java.awt.event.KeyEvent;
@@ -11,12 +12,20 @@ import java.awt.event.KeyEvent;
  */
 public class Controller
 {
+    private static Controller singleton;
+    public synchronized static Controller getInstance()
+    {
+        if (singleton == null)
+            singleton = new Controller();
+        return singleton;
+    }
+
     // region Constants
     public final float STEP_PERIOD = 1 / 30.0f; // Time in seconds.
     public final int VELOCITY_ITERATIONS_PER_STEP = 100;
     public final int POSITION_ITERATIONS_PER_STEP = 300;
 
-    public final GameState INITIAL_STATE = GameState.LOADING;
+    public final GameState INITIAL_STATE = GameState.MAIN_MENU;
     // endregion
 
     // region Supporting Objects
@@ -31,6 +40,7 @@ public class Controller
     private int previousKeycode = -0x01;
     private int keyCount = 0;
     private int maxKeyCount = 0;
+    private int currentLevel = -1;
     // endregion
 
 
@@ -45,7 +55,12 @@ public class Controller
         model = m;
     }
 
-    public GameState getState()
+    public void setView(View v)
+    {
+        view = v;
+    }
+
+    public synchronized GameState getState()
     {
         return state;
     }
@@ -55,8 +70,14 @@ public class Controller
         if (this.state == state) return;
         this.state = state;
         notifyModelViewStateChange();
+        if (this.state == GameState.PLAY)
+            Game.getInstance().play();
+    }
 
-        // TODO: How do we start a game loop when the state changes?
+
+    public void setCurrentLevel(int index)
+    {
+        currentLevel = index;
     }
     // endregion
 
@@ -82,6 +103,14 @@ public class Controller
     }
 
 
+    public boolean loadLevel(int i)
+    {
+        Level l = GameInit.getLevel(i);
+        if (l == null) return false;
+        return loadLevel(l);
+    }
+
+
     public boolean loadLevel(Level level)
     {
         if (model.buildLevel(level))
@@ -91,6 +120,30 @@ public class Controller
                 return true;
         }
         return false;
+    }
+
+
+    public void startCurrentLevel()
+    {
+        startGame(currentLevel);
+    }
+
+
+    public void startGame(int i)
+    {
+        if (loadLevel(i))
+        {
+            setState(GameState.PLAY);
+        }
+    }
+
+
+    public void startGame(Level level)
+    {
+        if (loadLevel(level))
+        {
+            setState(GameState.PLAY);
+        }
     }
 
 

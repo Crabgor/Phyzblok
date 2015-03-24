@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 public class GameWindow extends JFrame
 {
-    private static final int PREF_W = 910;
+    private static final int PREF_W = 1000;
     private static final int PREF_H = 940;
 
 
@@ -19,7 +19,6 @@ public class GameWindow extends JFrame
         setSize(PREF_W, PREF_H);
         setVisible(true);
         setBackground(Color.black);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

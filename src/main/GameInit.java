@@ -12,26 +12,22 @@ import org.jbox2d.common.Vec2;
 import view.View;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Cregnacht on 2015-03-03.
  */
 public class GameInit
 {
+
+    private static ArrayList<Level> levels = new ArrayList<Level>();
+
     /**
      *
      * @param args
      */
     public static void main(String[] args)
     {
-        Model model = new Model();
-        View view = new View();
-        Controller controller = new Controller(model, view);
-
-        model.setController(controller);
-        view.setController(controller);
-
-
         // region Testing Level
         //MainEntity mainEntity = new MainEntity(5.0f, 9.0f, -10.0f, 8.0f, 8.0f);
         //Entity[] entities = {
@@ -72,10 +68,27 @@ public class GameInit
 
         Level level = new Level(mainEntity, entities, goal, new Vec2(0.0f, -10.0f), 10);
 
-        if (controller.loadLevel(level))
-        {
-            controller.setState(GameState.PLAY);
-            Game.getInstance(controller).play();
-        }
+        levels.add(level);
+
+        Controller controller = Controller.getInstance();
+        controller.setModel(new Model(controller));
+        controller.setView(new View(controller));
+
+        StatePoller statePoller = new StatePoller();
+        statePoller.run();
+
+
+        //if (controller.loadLevel(level))
+        //{
+        //    controller.setState(GameState.PLAY);
+        //    Game.getInstance(controller).play();
+        //}
+    }
+
+    public static Level getLevel(int index)
+    {
+        if (index >= levels.size())
+            return null;
+        return levels.get(index);
     }
 }

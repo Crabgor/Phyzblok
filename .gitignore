@@ -1,2 +1,5 @@
 .idea/workspace.xml
 .idea/workspace.xml
+*.class
+out/production/Phyzblok/controller/Controller$1.class
+*.class

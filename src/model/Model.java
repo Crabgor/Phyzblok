@@ -73,19 +73,13 @@ public class Model implements IModelView
 	}
 	// endregion
 
-	// region Setters
-	public void setController(Controller controller)
-	{
-		this.controller = controller;
-	}
-	// endregion
-
 
 	/**
 	 *
 	 */
-	public Model()
+	public Model(Controller c)
 	{
+		controller = c;
 		world = null;
 		mainBody = null;
 		mainEntity = null;
@@ -93,6 +87,7 @@ public class Model implements IModelView
 		staticEntities = new ArrayList<ViewEntity>();
 		currentGravity = new Vec2(0.0f, 0.0f);
 	}
+
 
 
 	/**

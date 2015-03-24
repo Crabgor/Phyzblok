@@ -28,7 +28,7 @@ public class TestLevelLoad
 
         System.out.println("Level created!");
 
-        Model model = new Model();
+        Model model = new Model(null);
         try { model.buildLevel(level); }
         catch (Exception e) { System.out.println(e.getMessage() + " " + e.toString()); }
 

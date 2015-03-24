@@ -12,19 +12,21 @@ class EntityPanel extends JPanel{
 
 
     private Color colour;
+    private static final int PREF_W = 500;
+    private static final int PREF_H = PREF_W;
+    private ArrayList<PhyzRectangle> rectangles;
 
-    public EntityPanel(Color c) {
+    public EntityPanel(Color c)
+    {
         colour = c;
         rectangles = new ArrayList<PhyzRectangle>();
         //his.gameTwo = frame;
         ActionMap actionMap = getActionMap();
         int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
         InputMap inputMap = getInputMap(condition);
+        setVisible(false);
+    }
 
-        }
-    private static final int PREF_W = 500;
-    private static final int PREF_H = PREF_W;
-    private ArrayList<PhyzRectangle> rectangles;
 
     public void AddShape(PhyzRectangle rectangle)
     {
