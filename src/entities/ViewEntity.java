@@ -1,7 +1,6 @@
 package entities;
 
 import org.jbox2d.dynamics.Body;
-import org.w3c.dom.css.Rect;
 import view.View;
 
 import java.awt.*;

@@ -7,7 +7,6 @@ import entities.WallEntity;
 import org.jbox2d.common.Vec2;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 import java.io.File;

@@ -208,7 +208,6 @@ public class Controller
             {
                 keyCount++;
                 view.updateNumText(keyCount, maxKeyCount);
-
             }
         }
     }

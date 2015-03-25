@@ -1,7 +1,8 @@
 package model;
 
 import controller.Controller;
-import entities.*;
+import entities.Entity;
+import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
 import levelGeneration.Level;
@@ -9,6 +10,7 @@ import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

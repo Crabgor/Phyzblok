@@ -1,11 +1,10 @@
 package main;
 
-import controller.*;
+import controller.Controller;
 import entities.Entity;
 import entities.MainEntity;
 import entities.StdEntity;
 import entities.WallEntity;
-import enums.GameState;
 import levelGeneration.Level;
 import model.Model;
 import org.jbox2d.common.Vec2;

@@ -26,8 +26,8 @@ public class View implements IModelView
     private EntityPanel staticsPanel,
                         dynamicsPanel,
                         goalPanel,
-                        backGroundPanel,
                         mainShapePanel;
+    private JPanel backgroundPanel;
 
     private JLabel clickCountNumber,
                     gameInstructions;
@@ -63,10 +63,17 @@ public class View implements IModelView
 
         mainMenuPanel = new MainMenuPanel();
         mainMenuPanel.setVisible(true);
-        //mainMenuPanel.setBackground(Color.blue);
-        mainMenuPanel.setOpaque(false);
+        mainMenuPanel.setBackground(Color.DARK_GRAY);
+
+        backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(Color.DARK_GRAY);
+        backgroundPanel.setSize(1000, 1000);
+        backgroundPanel.setOpaque(true);
+        backgroundPanel.setLocation(0, 0);
 
         window.add(mainMenuPanel);
+        window.addKeyListener(inputListener);
+
         window.revalidate();
         window.repaint();
     }
@@ -185,13 +192,6 @@ public class View implements IModelView
         clickCountNumber.setForeground(Color.PINK);
         clickCountNumber.setLocation(20,20);
 
-
-        backGroundPanel = new EntityPanel(controller.getModel().getMainEntity().getColour());
-        backGroundPanel.setBackground(Color.DARK_GRAY);
-        backGroundPanel.setSize(1000, 1000);
-        backGroundPanel.setOpaque(true);
-        backGroundPanel.setLocation(0, 0);
-
         goalPanel = new EntityPanel(Color.GREEN);
         goalPanel.setBackground(new Color(51, 133, 19));
         goalPanel.setSize(235, 200);
@@ -216,13 +216,11 @@ public class View implements IModelView
 
         // TODO: Currently panels fill window, fix this if necessary
         // TODO: Panels and inputListener may be added multiple times per game instance over the course of play, fix this
-        window.getContentPane().add(mainShapePanel);
-        window.getContentPane().add(staticsPanel);
-        window.getContentPane().add(dynamicsPanel);
-        window.getContentPane().add(goalPanel);
-        window.getContentPane().add(backGroundPanel);
-
-        window.addKeyListener(inputListener);
+        window.add(mainShapePanel);
+        window.add(staticsPanel);
+        window.add(dynamicsPanel);
+        window.add(goalPanel);
+        window.add(backgroundPanel);
 
         window.revalidate();
         window.repaint();
@@ -243,10 +241,10 @@ public class View implements IModelView
             case LEVEL_SELECT:
                 break;
             case LOADING:
-                mainMenuPanel.setVisible(false);
+                window.remove(mainMenuPanel);
                 break;
             case MAIN_MENU:
-                mainMenuPanel.setVisible(true);
+                window.add(mainMenuPanel);
                 break;
             case PAUSE:
                 break;
@@ -254,7 +252,7 @@ public class View implements IModelView
                 mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);
                 staticsPanel.setVisible(true);
-                mainMenuPanel.setVisible(false);
+                goalPanel.setVisible(true);
                 break;
             default:
                 break;

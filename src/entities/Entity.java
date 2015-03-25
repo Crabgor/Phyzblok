@@ -1,8 +1,9 @@
 package entities;
 
-import java.awt.*;
 import enums.Gravity;
 import org.jbox2d.dynamics.Body;
+
+import java.awt.*;
 
 /**
  * An abstract representation of a physical entity used for generating

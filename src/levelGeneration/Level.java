@@ -1,6 +1,7 @@
 package levelGeneration;
 
-import entities.*;
+import entities.Entity;
+import entities.MainEntity;
 import org.jbox2d.common.Vec2;
 
 public class Level
