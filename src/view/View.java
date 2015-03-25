@@ -30,7 +30,11 @@ public class View implements IModelView
     private JPanel backgroundPanel;
 
     private JLabel clickCountNumber,
-                    gameInstructions;
+                    gameInstructions,
+                    LevelEndText;
+
+
+
     private MainMenuPanel mainMenuPanel;
     private PausePanel pausePanel;
 
@@ -39,6 +43,7 @@ public class View implements IModelView
     private List<PhyzRectangle> dynamics;
 
     private InputListener inputListener = InputListener.getInstance();
+
     // endregion
 
     // region Getters
@@ -60,6 +65,7 @@ public class View implements IModelView
         controller = c;
         window = new GameWindow("PhyzBlok");
         window.setLayout(null);
+
 
         mainMenuPanel = new MainMenuPanel();
         mainMenuPanel.setVisible(true);
@@ -115,8 +121,23 @@ public class View implements IModelView
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
         if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 ){
-            goalPanel.setBackground(Color.PINK);
+            finishLevel();
         }
+    }
+
+    private void finishLevel()
+    {
+
+
+        goalPanel.setBackground(Color.PINK);
+        LevelEndText = new JLabel("YOU WIN");
+        LevelEndText.setText("YOU WIN \n press space to continue");
+        LevelEndText.setFont(new Font("Verdana", 1, 20));
+        LevelEndText.setForeground(Color.GREEN);
+        LevelEndText.setLocation(20,200);
+
+
+        //TODO: controller update. press space bar to go to menue
     }
 
 
@@ -221,7 +242,6 @@ public class View implements IModelView
         window.add(dynamicsPanel);
         window.add(goalPanel);
         window.add(backgroundPanel);
-
         window.revalidate();
         window.repaint();
     }
