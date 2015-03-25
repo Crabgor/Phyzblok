@@ -8,6 +8,8 @@ package view.controls;
 import controller.Controller;
 import enums.GameState;
 
+import javax.swing.*;
+
 /**
  *
  * @author Craig Ryan
@@ -105,8 +107,17 @@ public class MainMenuPanel extends javax.swing.JPanel
 
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        Controller.getInstance().setState(GameState.LOADING);
-        Controller.getInstance().setCurrentLevel(0);
+        final Controller c = Controller.getInstance();
+        c.setState(GameState.LOADING);
+        c.setCurrentLevel(0);
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Controller.getInstance().startCurrentLevel();
+            }
+        });
     }
 
 

@@ -11,17 +11,17 @@ public class StatePoller extends Thread
     {
         Controller controller = Controller.getInstance();
 
-
-        double previousTime = System.currentTimeMillis(); // TODO: Ensure this doesn't cause any problems.
-
         while (true)
         {
-            double currentTime = System.currentTimeMillis();
-            double elapsedTime = currentTime - previousTime;
+            try { currentThread().sleep(2000); }
+            catch (Exception e) {}
 
-            if (elapsedTime <= 5000) continue;
+            //double currentTime = System.currentTimeMillis();
+            //double elapsedTime = currentTime - previousTime;
 
-            previousTime = currentTime;
+            //if (elapsedTime <= 2000) continue;
+
+            //previousTime = currentTime;
 
             if (controller.getState() == GameState.LOADING && !Game.getInstance().isRunning())
             {
