@@ -26,7 +26,8 @@ public class View implements IModelView
     private EntityPanel staticsPanel,
                         dynamicsPanel,
                         goalPanel,
-                        mainShapePanel;
+                        mainShapePanel,
+                        textPanel;
     private JPanel backgroundPanel;
 
     private JLabel clickCountNumber,
@@ -120,7 +121,7 @@ public class View implements IModelView
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
-        if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 ){
+        if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 && goalPanel.getBackground()!=Color.PINK){
             finishLevel();
         }
     }
@@ -131,10 +132,13 @@ public class View implements IModelView
 
         goalPanel.setBackground(Color.PINK);
         LevelEndText = new JLabel("YOU WIN");
-        LevelEndText.setText("YOU WIN \n press space to continue");
+        LevelEndText.setText("YOU WIN" + "\n" + "press space to continue");
         LevelEndText.setFont(new Font("Verdana", 1, 20));
         LevelEndText.setForeground(Color.GREEN);
-        LevelEndText.setLocation(20,200);
+        LevelEndText.setLocation(200, 200);
+        dynamicsPanel.add(LevelEndText);
+
+
 
 
         //TODO: controller update. press space bar to go to menue
