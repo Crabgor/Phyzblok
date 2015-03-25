@@ -5,6 +5,8 @@ import levelGeneration.Level;
 import main.GameInit;
 import model.Model;
 import view.View;
+
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -31,6 +33,7 @@ public class Controller
     // region Supporting Objects
     private Model model;
     private View view;
+    private Timer gameTimer;
     // endregion
 
     // region Fields
@@ -71,7 +74,8 @@ public class Controller
         this.state = state;
         notifyModelViewStateChange();
         if (this.state == GameState.PLAY)
-            Game.getInstance().play();
+            //Game.getInstance().play();
+            startTimer();
     }
 
 
@@ -88,6 +92,7 @@ public class Controller
     private Controller()
     {
         this.state = INITIAL_STATE;
+        this.gameTimer = new Timer((int) (STEP_PERIOD * 1000), new GameStepper());
     }
 
 
@@ -100,6 +105,18 @@ public class Controller
         this();
         this.model = model;
         this.view = view;
+    }
+
+
+    public void startTimer()
+    {
+        gameTimer.start();
+    }
+
+
+    public void stopTimer()
+    {
+        gameTimer.stop();
     }
 
 

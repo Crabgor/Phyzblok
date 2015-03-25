@@ -63,7 +63,8 @@ public class View implements IModelView
 
         mainMenuPanel = new MainMenuPanel();
         mainMenuPanel.setVisible(true);
-        mainMenuPanel.setBackground(Color.blue);
+        //mainMenuPanel.setBackground(Color.blue);
+        mainMenuPanel.setOpaque(false);
 
         window.add(mainMenuPanel);
         window.revalidate();
@@ -90,11 +91,11 @@ public class View implements IModelView
     {
         int numLeft = numTotal-numUsed;
         clickCountNumber.setText("you have " + String.valueOf(numLeft) + " clicks left");
-        gameInstructions.setText(
-                "Main ro ="+ String.valueOf(controller.getModel().getMainEntity().getAngle()) +
-                "  Black ro="+ String.valueOf(controller.getModel().getDynamicEntities().get(0).getAngle()) +
-                " Yel ro=" + String.valueOf(controller.getModel().getDynamicEntities().get(1).getAngle())
-        );
+        gameInstructions.setText("\n");
+        //        "Main ro ="+ String.valueOf(controller.getModel().getMainEntity().getAngle()) +
+        //        "  Black ro="+ String.valueOf(controller.getModel().getDynamicEntities().get(0).getAngle()) +
+        //        " Yel ro=" + String.valueOf(controller.getModel().getDynamicEntities().get(1).getAngle())
+        //);
     }
 
     /**
@@ -222,6 +223,9 @@ public class View implements IModelView
         window.getContentPane().add(backGroundPanel);
 
         window.addKeyListener(inputListener);
+
+        window.revalidate();
+        window.repaint();
     }
 
 
@@ -256,7 +260,7 @@ public class View implements IModelView
                 break;
         }
 
-        window.repaint();
         window.revalidate();
+        window.repaint();
     }
 }

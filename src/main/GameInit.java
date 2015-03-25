@@ -74,8 +74,8 @@ public class GameInit
         controller.setModel(new Model(controller));
         controller.setView(new View(controller));
 
-        StatePoller statePoller = new StatePoller();
-        statePoller.run();
+        //StatePoller statePoller = new StatePoller();
+        //statePoller.run();
 
 
         //if (controller.loadLevel(level))
