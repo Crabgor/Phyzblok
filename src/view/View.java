@@ -30,7 +30,11 @@ public class View implements IModelView
                         mainShapePanel;
 
     private JLabel clickCountNumber,
-                    gameInstructions;
+                    gameInstructions,
+                    LevelEndText;
+
+
+
     private MainMenuPanel mainMenuPanel;
     private PausePanel pausePanel;
 
@@ -39,6 +43,7 @@ public class View implements IModelView
     private List<PhyzRectangle> dynamics;
 
     private InputListener inputListener = InputListener.getInstance();
+
     // endregion
 
     // region Getters
@@ -60,6 +65,7 @@ public class View implements IModelView
         controller = c;
         window = new GameWindow("PhyzBlok");
         window.setLayout(null);
+
 
         mainMenuPanel = new MainMenuPanel();
         mainMenuPanel.setVisible(true);
@@ -107,8 +113,23 @@ public class View implements IModelView
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
         if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 ){
-            goalPanel.setBackground(Color.PINK);
+            finishLevel();
         }
+    }
+
+    private void finishLevel()
+    {
+
+
+        goalPanel.setBackground(Color.PINK);
+        LevelEndText = new JLabel("YOU WIN");
+        LevelEndText.setText("YOU WIN \n press space to continue");
+        LevelEndText.setFont(new Font("Verdana", 1, 20));
+        LevelEndText.setForeground(Color.GREEN);
+        LevelEndText.setLocation(20,200);
+
+
+        //TODO: controller update. press space bar to go to menue
     }
 
 
@@ -215,11 +236,13 @@ public class View implements IModelView
 
         // TODO: Currently panels fill window, fix this if necessary
         // TODO: Panels and inputListener may be added multiple times per game instance over the course of play, fix this
+
+        window.getContentPane().add(goalPanel);
         window.getContentPane().add(mainShapePanel);
         window.getContentPane().add(staticsPanel);
         window.getContentPane().add(dynamicsPanel);
-        window.getContentPane().add(goalPanel);
         window.getContentPane().add(backGroundPanel);
+        window.remove(mainMenuPanel);
 
         window.addKeyListener(inputListener);
     }
