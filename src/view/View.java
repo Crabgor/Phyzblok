@@ -326,6 +326,7 @@ public class View implements IModelView
             case LOADING:
                 levelSelectPanel.setVisible(false);
                 window.remove(mainMenuPanel);
+                controller.resertKeyCount();
                 break;
             case MAIN_MENU:
                 window.add(mainMenuPanel);

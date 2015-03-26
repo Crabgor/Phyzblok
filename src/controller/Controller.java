@@ -235,6 +235,11 @@ public class Controller
         }
     }
 
+
+    public void resertKeyCount()
+    {
+        keyCount=0;
+    }
     /**
      *
      */
