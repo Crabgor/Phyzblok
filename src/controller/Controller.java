@@ -197,9 +197,32 @@ public class Controller
      */
     public void getInputs()
     {
+        int keycode = view.pollInput();
+        if(keycode == 32) {
+            getInstance().setState(GameState.LEVEL_SELECT);
+            keyCount =0;
+
+        }
+
+        if(keycode == 82)
+        {
+            final Controller c = Controller.getInstance();
+            c.setState(GameState.LOADING);
+            c.setCurrentLevel(currentLevel);
+            SwingUtilities.invokeLater(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    keyCount =0;
+                    Controller.getInstance().startCurrentLevel();
+                }
+            });
+        }
+
         if (keyCount >= maxKeyCount) return;
 
-        int keycode = view.pollInput();
+
         if (keycode != previousKeycode)
         {
             previousKeycode = keycode;
@@ -208,23 +231,6 @@ public class Controller
             {
                 keyCount++;
                 view.updateNumText(keyCount, maxKeyCount);
-            }
-            if(keycode == 32)
-                getInstance().setState(GameState.LEVEL_SELECT);
-            if(keycode == 82)
-            {
-                final Controller c = Controller.getInstance();
-                c.setState(GameState.LOADING);
-                c.setCurrentLevel(currentLevel);
-                SwingUtilities.invokeLater(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-
-                        Controller.getInstance().startCurrentLevel();
-                    }
-                });
             }
         }
     }
