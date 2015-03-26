@@ -4,6 +4,7 @@ import controller.Controller;
 import entities.ViewEntity;
 import enums.GameState;
 import interfaces.IModelView;
+import view.controls.LevelSelectPanel;
 import view.controls.MainMenuPanel;
 import view.controls.PausePanel;
 
@@ -39,6 +40,7 @@ public class View implements IModelView
 
 
     private MainMenuPanel mainMenuPanel;
+    private LevelSelectPanel levelSelectPanel;
     private PausePanel pausePanel;
 
 
@@ -74,6 +76,10 @@ public class View implements IModelView
         mainMenuPanel.setVisible(true);
         mainMenuPanel.setBackground(Color.DARK_GRAY);
 
+        levelSelectPanel = new LevelSelectPanel();
+       // if(mainMenuPanel.getvis){            levelSelectPanel.setVisible(true);}
+        levelSelectPanel.setBackground(Color.CYAN);
+
         backgroundPanel = new JPanel();
         backgroundPanel.setBackground(Color.DARK_GRAY);
         backgroundPanel.setSize(1000, 1000);
@@ -81,6 +87,7 @@ public class View implements IModelView
         backgroundPanel.setLocation(0, 0);
 
         window.add(mainMenuPanel);
+        window.add(levelSelectPanel);
         window.addKeyListener(inputListener);
 
         window.revalidate();
@@ -127,7 +134,11 @@ public class View implements IModelView
         mainShapePanel.repaint();
         textPanel.revalidate();
         textPanel.repaint();
-        if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 && goalPanel.getBackground()!=Color.PINK){
+        if(controller.getModel().getMainEntity().getX()>650 &&
+                controller.getModel().getMainEntity().getY()> 550 &&
+                controller.getModel().getMainEntity().getY()< (650+235) &&
+                controller.getModel().getMainEntity().getY()< (550+200) &&
+                goalPanel.getBackground()!=Color.PINK){
             finishLevel();
         }
     }
@@ -142,6 +153,7 @@ public class View implements IModelView
         LevelEndText.setFont(new Font("Verdana", 1, 20));
         LevelEndText.setForeground(Color.GREEN);
         LevelEndText.setLocation(200, 200);
+        Controller.getInstance().setState(GameState.LEVEL_SELECT);
         textPanel.add(LevelEndText);
         textPanel.revalidate();
         textPanel.repaint();
@@ -252,6 +264,7 @@ public class View implements IModelView
         mainShapePanel.setLocation(0, 0);
         mainShapePanel.setVisible(true);
 
+
         dynamicsPanel = new EntityPanel(new Color(0, 35, 35));
         dynamicsPanel.setSize(1000, 1000);
         dynamicsPanel.setOpaque(false);
@@ -288,16 +301,38 @@ public class View implements IModelView
             case EXITING:
                 break;
             case LEVEL_SELECT:
+                mainMenuPanel.setVisible(false);
+                //window.add(levelSelectPanel);
+                levelSelectPanel.setVisible(true);
+                if(mainShapePanel!=null)
+                {
+
+                    //window.getContentPane().remove(dynamicsPanel);
+                    //dynamicsPanel.remove(0);
+                    dynamicsPanel.removeAll();
+                    //dynamicsPanel.remove(1);
+                    window.remove(mainShapePanel);
+                    window.remove(dynamicsPanel);
+                    //ToDo: remove palel shapes propperly
+
+                }
                 break;
             case LOADING:
+                levelSelectPanel.setVisible(false);
                 window.remove(mainMenuPanel);
                 break;
             case MAIN_MENU:
                 window.add(mainMenuPanel);
+                levelSelectPanel.setVisible(false);
                 break;
             case PAUSE:
                 break;
             case PLAY:
+                //window.add(textPanel);
+               // window.add(dynamicsPanel);
+               // window.add(backgroundPanel);
+                //window.add(dynamicsPanel);
+
                 textPanel.setVisible(true);
                 mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);

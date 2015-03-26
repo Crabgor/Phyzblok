@@ -101,7 +101,10 @@ public class MainMenuPanel extends javax.swing.JPanel
 
     private void levelSelectButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
+        //titleLabel.setText("level select button pressed");
+        titleLabel.setText(Controller.getInstance().getState().toString());
         Controller.getInstance().setState(GameState.LEVEL_SELECT);
+        //titleLabel.setText(Controller.getInstance().getState().toString());
     }
 
 
@@ -115,6 +118,7 @@ public class MainMenuPanel extends javax.swing.JPanel
             @Override
             public void run()
             {
+
                 Controller.getInstance().startCurrentLevel();
             }
         });
