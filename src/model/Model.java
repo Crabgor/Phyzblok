@@ -146,6 +146,10 @@ public class Model implements IModelView
 			case EXITING:
 				break;
 			case LEVEL_SELECT:
+				mainEntity = null;
+				dynamicEntities = new ArrayList<ViewEntity>();
+				staticEntities = new ArrayList<ViewEntity>();
+				currentGravity = new Vec2(0.00f, 0.00f);
 				break;
 			case LOADING:
 				break;
