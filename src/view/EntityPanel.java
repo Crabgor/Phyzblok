@@ -8,16 +8,13 @@ import java.util.List;
 class EntityPanel extends JPanel{
 
 
-    private Color colour;
     private static final int PREF_W = 500;
     private static final int PREF_H = PREF_W;
     private ArrayList<PhyzRectangle> rectangles;
 
-    public EntityPanel(Color c)
+    public EntityPanel()
     {
-        colour = c;
         rectangles = new ArrayList<PhyzRectangle>();
-        //his.gameTwo = frame;
         ActionMap actionMap = getActionMap();
         int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
         InputMap inputMap = getInputMap(condition);
@@ -78,13 +75,18 @@ class EntityPanel extends JPanel{
     public void updateBodies()
     {
         for (PhyzRectangle pr : rectangles)
-            pr.updatePosition();
+            pr.doUpdate();
     }
 
 
-    public void updateText()
+    public void clearBodies()
     {
-
+        rectangles = new ArrayList<PhyzRectangle>();
     }
 
+
+    public ArrayList<PhyzRectangle> getEntities()
+    {
+        return rectangles;
+    }
 }

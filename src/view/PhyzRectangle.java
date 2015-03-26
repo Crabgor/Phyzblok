@@ -32,7 +32,6 @@ public class PhyzRectangle extends Rectangle
     {
         super((Rectangle) entity.getShape());
         this.setSize(entity.getWidth(), entity.getHeight());
-        //this.setLocation(this.x, this.y);
         this.setLocation((int) (entity.getX()), (int) (-entity.getY()));
 
         this.entity = entity;
@@ -43,9 +42,9 @@ public class PhyzRectangle extends Rectangle
      *
      * Post-condition: The location of the shape is modified.
      */
-    public void updatePosition()
+    public void doUpdate()
     {
         this.setLocation((int) (entity.getX()), (int) (entity.getY()));
-        // TODO: ROTATION
+        this.setSize(entity.getWidth(), entity.getHeight());
     }
 }

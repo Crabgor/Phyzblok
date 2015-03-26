@@ -236,7 +236,7 @@ public class Controller
     }
 
 
-    public void resertKeyCount()
+    public void resetKeyCount()
     {
         keyCount=0;
     }
