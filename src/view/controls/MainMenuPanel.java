@@ -7,6 +7,7 @@ package view.controls;
 
 import controller.Controller;
 import enums.GameState;
+import view.GameWindow;
 
 import javax.swing.*;
 
@@ -123,6 +124,14 @@ public class MainMenuPanel extends javax.swing.JPanel
             }
         });
     }
+
+
+    //@Override
+    //public void revalidate()
+    //{
+    //    super.revalidate();
+    //    this.setSize(GameWindow.getInstance().getSize());
+    //}
 
 
     // Variables declaration - do not modify

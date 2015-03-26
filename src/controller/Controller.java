@@ -15,7 +15,7 @@ import java.awt.event.KeyEvent;
 public class Controller
 {
     private static Controller singleton;
-    public synchronized static Controller getInstance()
+    public static Controller getInstance()
     {
         if (singleton == null)
             singleton = new Controller();
@@ -100,7 +100,7 @@ public class Controller
      *
      * @param model
      */
-    public Controller(Model model, View view)
+    protected Controller(Model model, View view)
     {
         this();
         this.model = model;
