@@ -209,6 +209,23 @@ public class Controller
                 keyCount++;
                 view.updateNumText(keyCount, maxKeyCount);
             }
+            if(keycode == 32)
+                getInstance().setState(GameState.LEVEL_SELECT);
+            if(keycode == 82)
+            {
+                final Controller c = Controller.getInstance();
+                c.setState(GameState.LOADING);
+                c.setCurrentLevel(currentLevel);
+                SwingUtilities.invokeLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+
+                        Controller.getInstance().startCurrentLevel();
+                    }
+                });
+            }
         }
     }
 
