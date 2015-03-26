@@ -202,21 +202,20 @@ public class Controller
         {
             getInstance().setState(GameState.LEVEL_SELECT);
             keyCount =0;
-
         }
 
         if(keycode == 82) //r
         {
-            final Controller c = Controller.getInstance();
-            c.setState(GameState.LOADING);
-            c.setCurrentLevel(currentLevel);
+            setState(GameState.LEVEL_SELECT);
+            setState(GameState.LOADING);
+            setCurrentLevel(currentLevel);
             SwingUtilities.invokeLater(new Runnable()
             {
                 @Override
                 public void run()
                 {
-                    keyCount =0;
-                    Controller.getInstance().startCurrentLevel();
+                    keyCount = 0;
+                    startCurrentLevel();
                 }
             });
         }
@@ -688,8 +687,6 @@ public class Controller
                 }
                 break;
             // endregion
-
-            // TODO: Determine if these values of gravity are enough, or if there should be scaling or a way to increase it further (by a factor G)
             default:
                 break;
         }
