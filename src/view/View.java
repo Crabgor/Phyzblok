@@ -78,6 +78,10 @@ public class View implements IModelView
         mainMenuPanel.setVisible(true);
         mainMenuPanel.setBackground(Color.DARK_GRAY);
 
+        pausePanel = new PausePanel();
+        //pausePanel.setVisible(true);
+        pausePanel.setBackground(Color.pink);
+
         levelSelectPanel = new LevelSelectPanel();
        // if(mainMenuPanel.getvis){            levelSelectPanel.setVisible(true);}
         levelSelectPanel.setBackground(Color.CYAN);
@@ -90,6 +94,7 @@ public class View implements IModelView
 
         window.add(mainMenuPanel);
         window.add(levelSelectPanel);
+        window.add(pausePanel);
         window.addKeyListener(inputListener);
 
         window.revalidate();
@@ -333,8 +338,16 @@ public class View implements IModelView
                 levelSelectPanel.setVisible(false);
                 break;
             case PAUSE:
+                window.add(pausePanel);
+                pausePanel.setOpaque(true);
+                window.revalidate();
+                window.repaint();
+
+
                 break;
             case PLAY:
+                pausePanel.setOpaque(false);
+                window.remove(pausePanel);
                 //window.add(textPanel);
                // window.add(dynamicsPanel);
                // window.add(backgroundPanel);

@@ -198,13 +198,14 @@ public class Controller
     public void getInputs()
     {
         int keycode = view.pollInput();
-        if(keycode == 32) {
+        if(keycode == 32) //space bar
+        {
             getInstance().setState(GameState.LEVEL_SELECT);
             keyCount =0;
 
         }
 
-        if(keycode == 82)
+        if(keycode == 82) //r
         {
             final Controller c = Controller.getInstance();
             c.setState(GameState.LOADING);
@@ -218,6 +219,14 @@ public class Controller
                     Controller.getInstance().startCurrentLevel();
                 }
             });
+        }
+        if(keycode == 80 && !getInstance().getState().equals(GameState.PAUSE)) // p
+        {
+            getInstance().setState(GameState.PAUSE);
+        }
+        else if(keycode == 80 && getInstance().getState().equals(GameState.PAUSE))
+        {
+            getInstance().setState(GameState.PLAY);
         }
 
         if (keyCount >= maxKeyCount) return;
