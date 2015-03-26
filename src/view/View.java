@@ -28,7 +28,9 @@ public class View implements IModelView
                         goalPanel,
                         mainShapePanel,
                         textPanel;
+
     private JPanel backgroundPanel;
+
 
     private JLabel clickCountNumber,
                     gameInstructions,
@@ -94,6 +96,8 @@ public class View implements IModelView
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
         mainShapePanel.updateBodies();
+        textPanel.updateBodies();
+
 
         updateGraphics();
     }
@@ -121,6 +125,8 @@ public class View implements IModelView
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
+        textPanel.revalidate();
+        textPanel.repaint();
         if(controller.getModel().getMainEntity().getX()>650 && controller.getModel().getMainEntity().getY()> 550 && goalPanel.getBackground()!=Color.PINK){
             finishLevel();
         }
@@ -132,13 +138,13 @@ public class View implements IModelView
 
         goalPanel.setBackground(Color.PINK);
         LevelEndText = new JLabel("YOU WIN");
-        LevelEndText.setText("YOU WIN" + "\n" + "press space to continue");
+        LevelEndText.setText("<html>YOU WIN  <br> press space to continue</html>");
         LevelEndText.setFont(new Font("Verdana", 1, 20));
         LevelEndText.setForeground(Color.GREEN);
         LevelEndText.setLocation(200, 200);
-        dynamicsPanel.add(LevelEndText);
-
-
+        textPanel.add(LevelEndText);
+        textPanel.revalidate();
+        textPanel.repaint();
 
 
         //TODO: controller update. press space bar to go to menue
@@ -186,11 +192,10 @@ public class View implements IModelView
         mainShapePanel.AddShape(mainShape);
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
-        if(mainShape.getX() >100 && mainShape.getY() > 100)
-        {
-            goalPanel.setBackground(Color.black);
-        }
 
+        textPanel.add(LevelEndText);
+        textPanel.revalidate();
+        textPanel.repaint();
 
         goalPanel.revalidate();
         goalPanel.repaint();
@@ -223,6 +228,24 @@ public class View implements IModelView
         goalPanel.setOpaque(true);
         goalPanel.setLocation(640, 550);
 
+        LevelEndText = new JLabel();
+        LevelEndText.setFont(new Font("Verdana",1,30));
+        LevelEndText.setForeground(Color.GREEN);
+        LevelEndText.setLocation(10,20);
+
+
+        textPanel = new EntityPanel(new Color(200, 164, 245));
+        textPanel.setFont(new Font("Verdana",1, 50));
+        textPanel.setForeground(Color.GREEN);
+        //textPanel.setBackground(Color.YELLOW);
+        textPanel.setVisible(true);
+        textPanel.setOpaque(false);
+        textPanel.setSize(1000,1000);
+        textPanel.setLocation(0,300);
+
+
+
+
         mainShapePanel = new EntityPanel(new Color(51, 164, 245));
         mainShapePanel.setSize(1000, 1000);
         mainShapePanel.setOpaque(false);
@@ -241,6 +264,8 @@ public class View implements IModelView
 
         // TODO: Currently panels fill window, fix this if necessary
         // TODO: Panels and inputListener may be added multiple times per game instance over the course of play, fix this
+
+        window.add(textPanel);
         window.add(mainShapePanel);
         window.add(staticsPanel);
         window.add(dynamicsPanel);
@@ -273,6 +298,7 @@ public class View implements IModelView
             case PAUSE:
                 break;
             case PLAY:
+                textPanel.setVisible(true);
                 mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);
                 staticsPanel.setVisible(true);
