@@ -21,6 +21,7 @@ class EntityPanel extends JPanel{
         ActionMap actionMap = getActionMap();
         int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
         InputMap inputMap = getInputMap(condition);
+        setSize(GameWindow.getInstance().getSize());
         setVisible(false);
     }
 

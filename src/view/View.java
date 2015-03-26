@@ -9,6 +9,7 @@ import view.controls.MainMenuPanel;
 import view.controls.PausePanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import java.util.List;
 public class View implements IModelView
 {
     // region Constants
-    public static int MODEL_VIEW_RATIO = 8;
     public static float MODEL_VIEW_X = 8;
     public static float MODEL_VIEW_Y = 8;
     // endregion
@@ -90,6 +90,7 @@ public class View implements IModelView
 
         window.add(mainMenuPanel);
         window.add(levelSelectPanel);
+
         window.addKeyListener(inputListener);
 
         window.revalidate();
@@ -133,11 +134,20 @@ public class View implements IModelView
      */
     private void updateGraphics()
     {
-
+        Dimension d = window.getSize();
+        backgroundPanel.setSize(d);
+        backgroundPanel.revalidate();
+        backgroundPanel.repaint();
+        dynamicsPanel.setSize(d);
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
+        staticsPanel.setSize(d);
+        staticsPanel.revalidate();
+        staticsPanel.repaint();
+        mainShapePanel.setSize(d);
         mainShapePanel.revalidate();
         mainShapePanel.repaint();
+        textPanel.setSize(d);
         textPanel.revalidate();
         textPanel.repaint();
         if(controller.getModel().getMainEntity().getX()>650 &&
