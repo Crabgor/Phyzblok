@@ -17,7 +17,9 @@ import java.util.List;
 public class View implements IModelView
 {
     // region Constants
-    public static final int MODEL_VIEW_RATIO = 8;
+    public static int MODEL_VIEW_RATIO = 8;
+    public static float MODEL_VIEW_X = 8;
+    public static float MODEL_VIEW_Y = 8;
     // endregion
 
     // region Fields
@@ -66,7 +68,7 @@ public class View implements IModelView
     public View(Controller c)
     {
         controller = c;
-        window = new GameWindow("PhyzBlok");
+        window = GameWindow.getInstance();
         window.setLayout(null);
 
 
@@ -93,6 +95,9 @@ public class View implements IModelView
      */
     public void update()
     {
+        MODEL_VIEW_X = window.getModelScaleX();
+        MODEL_VIEW_Y = window.getModelScaleY();
+
         dynamicsPanel.updateBodies();
         staticsPanel.updateBodies();
         mainShapePanel.updateBodies();
@@ -121,6 +126,7 @@ public class View implements IModelView
      */
     private void updateGraphics()
     {
+
         dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
         mainShapePanel.revalidate();

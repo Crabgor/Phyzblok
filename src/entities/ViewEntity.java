@@ -47,7 +47,7 @@ public class ViewEntity
     public float getX()	// Only view/controller need this
     {
 
-        return (physicsBody.getPosition().x - width/2) * View.MODEL_VIEW_RATIO;
+        return (physicsBody.getPosition().x - width/2) * View.MODEL_VIEW_X;
     }
 
 
@@ -66,7 +66,7 @@ public class ViewEntity
      */
     public float getY() // Only view/controller need this
     {
-        return (physicsBody.getPosition().y + height/2) * -1 * View.MODEL_VIEW_RATIO;
+        return (physicsBody.getPosition().y + height/2) * -1 * View.MODEL_VIEW_Y;
     }
 
 
@@ -86,7 +86,7 @@ public class ViewEntity
      */
     public int getWidth()
     {
-        return width * View.MODEL_VIEW_RATIO;
+        return (int) (width * View.MODEL_VIEW_X);
     }
 
 
@@ -96,7 +96,7 @@ public class ViewEntity
      */
     public int getHeight()
     {
-        return height * View.MODEL_VIEW_RATIO;
+        return (int) (height * View.MODEL_VIEW_Y);
     }
     // endregion
 

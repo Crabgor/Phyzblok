@@ -44,6 +44,7 @@ class EntityPanel extends JPanel{
         return new Dimension(PREF_W, PREF_H);
     }
 
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -65,12 +66,21 @@ class EntityPanel extends JPanel{
     }
 
 
+    //@Override
+    //public void revalidate()
+    //{
+    //    super.revalidate();
+    //    this.setSize(GameWindow.getInstance().getSize());
+    //}
+
 
     public void updateBodies()
     {
         for (PhyzRectangle pr : rectangles)
             pr.updatePosition();
     }
+
+
     public void updateText()
     {
 
