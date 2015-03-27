@@ -37,14 +37,14 @@ public class LevelSelectPanel extends javax.swing.JPanel
 
         titleLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("PHYZBLOK Level select");
+        titleLabel.setText("<html><center>PHYZBLOK<br>Level Select<center></select>");
         titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 840;
-        gridBagConstraints.ipady = 200;
+        gridBagConstraints.ipadx = 0;
+        gridBagConstraints.ipady = 0;
         add(titleLabel, gridBagConstraints);
 
         level1Button.setText("level 1");

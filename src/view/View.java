@@ -83,13 +83,21 @@ public class View implements IModelView
         mainMenuPanel.setBackground(Color.DARK_GRAY);
 
         pausePanel = new PausePanel();
-        //pausePanel.setVisible(true);
+        pausePanel.setLocation(200, 200);
+        pausePanel.setVisible(false);
+        pausePanel.setOpaque(true);
         pausePanel.setBackground(Color.pink);
 
         levelSelectPanel = new LevelSelectPanel();
         levelSelectPanel.setSize(window.getSize());
         levelSelectPanel.setVisible(false);
         levelSelectPanel.setBackground(Color.CYAN);
+
+        levelEndText = new JLabel("YOU WIN");
+        levelEndText.setText("<html>YOU WIN  <br> press space to continue</html>");
+        levelEndText.setFont(new Font("Verdana", 1, 20));
+        levelEndText.setForeground(Color.GREEN);
+        levelEndText.setLocation(200, 200);
 
         backgroundPanel = new JPanel();
         backgroundPanel.setBackground(Color.DARK_GRAY);
@@ -164,15 +172,12 @@ public class View implements IModelView
             mainShapePanel.setSize(d);
 
             backgroundPanel.setSize(d);
-            //backgroundPanel.revalidate();
             backgroundPanel.repaint();
 
             staticsPanel.setSize(d);
-            //staticsPanel.revalidate();
             staticsPanel.repaint();
 
             textPanel.setSize(d);
-            //textPanel.revalidate();
             textPanel.repaint();
 
             goalPanel.setLocation((int) (DEFAULT_GOAL_X * MODEL_VIEW_X / DEFAULT_MODEL_VIEW_X),
@@ -181,33 +186,25 @@ public class View implements IModelView
                               (int) (DEFAULT_GOAL_H * MODEL_VIEW_Y / DEFAULT_MODEL_VIEW_Y));
         }
 
-        //dynamicsPanel.revalidate();
         dynamicsPanel.repaint();
-        //mainShapePanel.revalidate();
         mainShapePanel.repaint();
 
-        //if (controller.getModel().getMainEntity().getX()>650 &&
-        //        controller.getModel().getMainEntity().getY()> 550 &&
-        //        controller.getModel().getMainEntity().getY()< (650+235) &&
-        //        controller.getModel().getMainEntity().getY()< (550+200) &&
-        //        goalPanel.getBackground()!=Color.PINK)
-        if (goalPanel.getBounds().contains(controller.getModel().getMainEntity().getX(), controller.getModel().getMainEntity().getY()))
-            finishLevel(); // TODO: Require user input for this.
+        if (goalPanel.getBounds()
+                    .contains(controller.getModel().getMainEntity().getX(),
+                              controller.getModel().getMainEntity().getY())
+            && controller.getState() != GameState.COMPLETE)
+        {
+            controller.setState(GameState.COMPLETE);
+            finishLevel();
+        }
     }
 
     private void finishLevel()
     {
         goalPanel.setBackground(Color.PINK);
-        levelEndText = new JLabel("YOU WIN");
-        levelEndText.setText("<html>YOU WIN  <br> press space to continue</html>");
-        levelEndText.setFont(new Font("Verdana", 1, 20));
-        levelEndText.setForeground(Color.GREEN);
-        levelEndText.setLocation(200, 200);
         textPanel.add(levelEndText);
-        //textPanel.revalidate();
+        textPanel.revalidate();
         textPanel.repaint();
-        Controller.getInstance().setState(GameState.LEVEL_SELECT);
-        //TODO: controller update. press space bar to go to menu
     }
 
 
@@ -243,9 +240,7 @@ public class View implements IModelView
         dynamicsPanel.add(clickCountNumber);
         staticsPanel.AddShapes(staticRects);
         mainShapePanel.AddShape(mainShape);
-        textPanel.add(levelEndText);
 
-        //window.revalidate();
         window.repaint();
 
         return true;    // TODO: Ensure successful method completion
@@ -274,11 +269,6 @@ public class View implements IModelView
         goalPanel.setSize((int) (DEFAULT_GOAL_W * MODEL_VIEW_X / DEFAULT_MODEL_VIEW_X),
                           (int) (DEFAULT_GOAL_H * MODEL_VIEW_Y / DEFAULT_MODEL_VIEW_Y));
         goalPanel.setOpaque(true);
-
-        levelEndText = new JLabel();
-        levelEndText.setFont(new Font("Verdana",1,30));
-        levelEndText.setForeground(Color.GREEN);
-        levelEndText.setLocation(10, 20);
 
         textPanel = new EntityPanel();
         textPanel.setFont(new Font("Verdana",1, 50));
@@ -309,7 +299,7 @@ public class View implements IModelView
         window.add(dynamicsPanel);
         window.add(goalPanel);
         window.add(backgroundPanel);
-        //window.revalidate();
+
         window.repaint();
     }
 
@@ -342,9 +332,9 @@ public class View implements IModelView
                     goalPanel.clearBodies();
                     window.remove(goalPanel);
                     goalPanel = null;
-                    textPanel.remove(levelEndText);
                     textPanel.remove(gameInstructions);
                     textPanel.remove(clickCountNumber);
+                    textPanel.remove(levelEndText);
                     window.remove(textPanel);
                     textPanel = null;
                     window.remove(backgroundPanel);
@@ -359,26 +349,16 @@ public class View implements IModelView
                 mainMenuPanel.setVisible(true);
                 break;
             case PAUSE:
-                window.add(pausePanel);
-                pausePanel.setOpaque(true);
-                window.revalidate();
-                window.repaint();
-
-
+                pausePanel.setVisible(true);
                 break;
             case PLAY:
-                pausePanel.setOpaque(false);
-                window.remove(pausePanel);
-                //window.add(textPanel);
-               // window.add(dynamicsPanel);
-               // window.add(backgroundPanel);
-                //window.add(dynamicsPanel);
-
+                pausePanel.setVisible(false);
                 textPanel.setVisible(true);
                 mainShapePanel.setVisible(true);
                 dynamicsPanel.setVisible(true);
                 staticsPanel.setVisible(true);
                 goalPanel.setVisible(true);
+                window.requestFocus();
                 break;
             default:
                 break;

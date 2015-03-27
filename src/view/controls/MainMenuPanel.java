@@ -57,8 +57,8 @@ public class MainMenuPanel extends javax.swing.JPanel
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 840;
-        gridBagConstraints.ipady = 200;
+        gridBagConstraints.ipadx = 0;
+        gridBagConstraints.ipady = 0;
         add(titleLabel, gridBagConstraints);
 
         startGameButton.setText("Start Game");

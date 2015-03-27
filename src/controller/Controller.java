@@ -38,7 +38,7 @@ public class Controller
 
     // region Fields
     private GameState state;
-    private int gravMagnitude;
+    private int gravMagnitude = 11;
     private int gravX, gravY;
     private int previousKeycode = -0x01;
     private int keyCount = 0;
@@ -74,7 +74,6 @@ public class Controller
         this.state = state;
         notifyModelViewStateChange();
         if (this.state == GameState.PLAY)
-            //Game.getInstance().play();
             startTimer();
     }
 
@@ -198,13 +197,8 @@ public class Controller
     public void getInputs()
     {
         int keycode = view.pollInput();
-        if(keycode == 32) //space bar
-        {
-            getInstance().setState(GameState.LEVEL_SELECT);
-            keyCount =0;
-        }
 
-        if(keycode == 82) //r
+        if(keycode == KeyEvent.VK_R) //r
         {
             setState(GameState.LEVEL_SELECT);
             setState(GameState.LOADING);
@@ -219,23 +213,15 @@ public class Controller
                 }
             });
         }
-        if(keycode == 80 && !getInstance().getState().equals(GameState.PAUSE)) // p
-        {
-            getInstance().setState(GameState.PAUSE);
-        }
-        else if(keycode == 80 && getInstance().getState().equals(GameState.PAUSE))
-        {
-            getInstance().setState(GameState.PLAY);
-        }
 
-        if (keyCount >= maxKeyCount) return;
+        if (keyCount >= maxKeyCount && keycode <= 40 && keycode >= 37) return;
 
 
         if (keycode != previousKeycode)
         {
             previousKeycode = keycode;
             applyUserInput(previousKeycode);
-            if (keycode <= 40 && keycode >= 37) //arrow key key codes
+            if (keycode <= 40 && keycode >= 37 && state == GameState.PLAY) //arrow key key codes
             {
                 keyCount++;
                 view.updateNumText(keyCount, maxKeyCount);
@@ -268,21 +254,6 @@ public class Controller
             case KeyEvent.VK_DOWN:
                 switch (state)
                 {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
                     case PLAY:
                         gravX = 0;
                         gravY = -1;
@@ -299,21 +270,6 @@ public class Controller
             case KeyEvent.VK_LEFT:
                 switch (state)
                 {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
                     case PLAY:
                         gravX = -1;
                         gravY = 0;
@@ -330,21 +286,6 @@ public class Controller
             case KeyEvent.VK_RIGHT:
                 switch (state)
                 {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
                     case PLAY:
                         gravX = 1;
                         gravY = 0;
@@ -361,21 +302,6 @@ public class Controller
             case KeyEvent.VK_UP:
                 switch (state)
                 {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
                     case PLAY:
                         gravX = 0;
                         gravY = 1;
@@ -386,306 +312,19 @@ public class Controller
                         break;
                 }
                 break;
-            // endregion
 
-            // region 0
-            case KeyEvent.VK_0:
+            case KeyEvent.VK_SPACE:
                 switch (state)
                 {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
                     case PLAY:
-                        gravMagnitude = 0;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
+                        setState(GameState.LEVEL_SELECT);
+                        keyCount = 0;
                         break;
 
-                    default:
-                        break;
+                    case COMPLETE:
+                        setState(GameState.LEVEL_SELECT);
+                        keyCount = 0;
                 }
-                break;
-            // endregion
-
-            // region 1
-            case KeyEvent.VK_1:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 1;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 2
-            case KeyEvent.VK_2:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 2;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 3
-            case KeyEvent.VK_3:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 3;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 4
-            case KeyEvent.VK_4:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 4;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 5
-            case KeyEvent.VK_5:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 5;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 6
-            case KeyEvent.VK_6:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 6;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 7
-            case KeyEvent.VK_7:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 7;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 8
-            case KeyEvent.VK_8:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 8;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-            // endregion
-
-            // region 9
-            case KeyEvent.VK_9:
-                switch (state)
-                {
-                    case EXITING:
-                        break;
-
-                    case LEVEL_SELECT:
-                        break;
-
-                    case LOADING:
-                        break;
-
-                    case MAIN_MENU:
-                        break;
-
-                    case PAUSE:
-                        break;
-
-                    case PLAY:
-                        gravMagnitude = 9;
-                        model.applyPlayerGravity(gravX, gravY, gravMagnitude);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
             // endregion
             default:
                 break;

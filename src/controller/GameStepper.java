@@ -20,7 +20,7 @@ public class GameStepper implements ActionListener
     {
         Controller controller = Controller.getInstance();
 
-        if (controller.getState() == GameState.PLAY)
+        if (controller.getState() == GameState.PLAY || controller.getState() == GameState.COMPLETE)
         {
             controller.getInputs();
             controller.updateModel();

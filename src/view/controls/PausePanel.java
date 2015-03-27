@@ -7,7 +7,7 @@ package view.controls;
 
 /**
  *
- * @author Cregnacht
+ * @author Craig Ryan
  */
 public class PausePanel extends javax.swing.JPanel {
 

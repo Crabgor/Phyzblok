@@ -10,5 +10,6 @@ public enum GameState
     LOADING,
     MAIN_MENU,
     PAUSE,
-    PLAY
+    PLAY,
+    COMPLETE
 }
