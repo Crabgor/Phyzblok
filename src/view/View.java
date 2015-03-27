@@ -76,6 +76,8 @@ public class View implements IModelView
         controller = c;
         window = GameWindow.getInstance();
         window.setLayout(null);
+        window.setBackground(Color.darkGray);
+
 
         mainMenuPanel = new MainMenuPanel();
         mainMenuPanel.setSize(window.getSize());
@@ -101,9 +103,11 @@ public class View implements IModelView
 
         backgroundPanel = new JPanel();
         backgroundPanel.setBackground(Color.DARK_GRAY);
-        backgroundPanel.setSize(window.getSize());
+        //backgroundPanel.setSize(window.getSize());
+        backgroundPanel.setSize(500,500);
         backgroundPanel.setOpaque(true);
         backgroundPanel.setLocation(0, 0);
+
 
         window.add(mainMenuPanel);
         window.add(levelSelectPanel);
@@ -172,7 +176,7 @@ public class View implements IModelView
             mainShapePanel.setSize(d);
 
             backgroundPanel.setSize(d);
-            backgroundPanel.repaint();
+            //backgroundPanel.repaint(); //removed by jeffrey
 
             staticsPanel.setSize(d);
             staticsPanel.repaint();
