@@ -29,6 +29,7 @@ public class LevelSelectPanel extends javax.swing.JPanel
         level1Button = new javax.swing.JButton();
         level2Button = new javax.swing.JButton();
         level3Button = new javax.swing.JButton();
+        level4Button = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -102,6 +103,25 @@ public class LevelSelectPanel extends javax.swing.JPanel
         gridBagConstraints.ipady = 35;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
         add(level3Button, gridBagConstraints);
+
+        level4Button.setText("Level 4");
+        level4Button.setMaximumSize(new java.awt.Dimension(98, 29));
+        level4Button.setPreferredSize(new java.awt.Dimension(98, 29));
+        level4Button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                level4ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 35;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        add(level4Button, gridBagConstraints);
     }// </editor-fold>
 
 
@@ -147,10 +167,24 @@ public class LevelSelectPanel extends javax.swing.JPanel
         });
     }
 
+
+    private void level4ButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        final Controller c = Controller.getInstance();
+        c.setState(GameState.LOADING);
+        c.setCurrentLevel(3);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Controller.getInstance().startCurrentLevel();
+            }
+        });
+    }
     // Variables declaration - do not modify
     private javax.swing.JButton level2Button;
     private javax.swing.JButton level1Button;
     private javax.swing.JButton level3Button;
+    private javax.swing.JButton level4Button;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration
 

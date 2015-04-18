@@ -93,7 +93,7 @@ public class View implements IModelView
         levelSelectPanel = new LevelSelectPanel();
         levelSelectPanel.setSize(window.getSize());
         levelSelectPanel.setVisible(false);
-        levelSelectPanel.setBackground(Color.CYAN);
+        levelSelectPanel.setBackground(new Color(80, 80, 200));
 
         levelEndText = new JLabel("YOU WIN");
         levelEndText.setText("<html>YOU WIN  <br> press space to continue</html>");
